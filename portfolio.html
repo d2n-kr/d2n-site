@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Portfolio | D2N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/favicon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="vendor/slick/slick.css" rel="stylesheet">
+  <link href="vendor/slick/slick-theme.css" rel="stylesheet">
+
+  <!-- Site CSS -->
+  <link href="css/hover-style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+ 
+
+
+  <!-- 페이지 전용 오버라이드 -->
+<style>
+
+
+
+  /* =========================
+     헤더 스타일
+  ========================== */
+.header.banner {
+  background:
+ /*   linear-gradient(rgba(0,0,0,.0), rgba(0,0,0,.0)),   */
+    url('img/portfolio-hero.jpg') center/cover no-repeat;
+  padding: 60px 0 10px !important;
+}
+
+
+  /* D2N 로고 스타일 */
+  .header.banner .brand {
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: color 0.15s;
+    margin-bottom: 14px !important; /* 로고 아래 간격 최소화 */
+    line-height: 1.1 !important;
+  }
+
+  .header.banner .brand:hover {
+    color: #E67E22;
+    text-decoration: none;
+  }
+
+  /* Portfolio 타이틀과 설명 텍스트 간격 */
+  .header.banner .page-title {
+    margin-bottom: 8px !important; /* Portfolio와 설명 사이 간격 축소 */
+  }
+
+  .section-header p.desc {
+    color: #7c8795;
+    margin-top: 0 !important; /* 설명 위쪽 간격 완전 제거 */
+  }
+
+  /* =========================
+     섹션 스타일
+  ========================== */
+  #portfolio {
+    padding: 50px 0 60px; /* 위쪽 50px, 아래쪽 60px 유지 */
+  }
+
+  /* =========================
+     카드 스타일
+  ========================== */
+ 
+.box7 {
+  position: relative;
+  overflow: hidden; /* 아이콘이 카드 밖으로 삐져나오지 않도록 */
+}
+
+/* 돋보기 아이콘 위치 최적화 */
+.box7 .icon {
+  position: absolute;
+  left: 12px;         /* 카드 왼쪽 여백 */
+  bottom: 12px;       /* 카드 하단 여백 */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 3;
+}
+
+/* 돋보기 아이콘 디자인 */
+.box7 .icon .fa {
+  background: #E67E22;
+  color: #fff;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: background 0.2s, transform 0.2s;
+  font-size: 18px;
+}
+
+.box7 .icon .fa:hover {
+  background: #cf6d15;
+  transform: scale(1.1);
+}
+
+/* 카드 텍스트 여백 조정 → 아이콘과 겹치지 않도록 */
+.box7 .box-content {
+  padding-bottom: 52px !important; /* 돋보기 아이콘 높이 + 여유 간격 확보 */
+}
+ 
+
+
+
+
+  /* =========================
+     슬라이더 스타일
+  ========================== */
+  /* 화살표 숨김 처리 */
+  .slick-prev:before,
+  .slick-next:before {
+    content: '' !important;
+  }
+
+  .slick-prev,
+  .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: transparent;
+    border: none;
+    color: #E58A45;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  .slick-prev i,
+  .slick-next i {
+    font-size: 36px;
+  }
+
+  .slick-prev {
+    left: 12px;
+  }
+
+  .slick-next {
+    right: 12px;
+  }
+
+  /* 메인 이미지 */
+  .port-slider img {
+    width: 100%;
+    height: auto;
+    max-height: 62vh;
+    object-fit: contain;
+    background: #000;
+  }
+
+  /* 썸네일 네비게이션 */
+  .port-slider-nav img {
+    width: 100%;
+    height: 72px;
+    object-fit: cover;
+  }
+
+  .port-slider-nav .slick-arrow {
+    display: none !important;
+  }
+
+  /* =========================
+     설명 영역
+  ========================== */
+  .proj-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-top: 25px;
+  }
+
+  .proj-desc {
+    margin-top: 8px;
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+</style>
+
+
+
+
+</head>
+
+<body>
+  <!-- ===== 네비 ===== -->
+  <div class="menu" aria-label="menu button"><span></span></div>
+  <nav id="nav" aria-label="primary navigation">
+    <ul class="main">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="welcome.html">Welcome</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="equipment.html">LiDAR Equipment</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="overlay"></div>
+
+  <!-- ===== 배너 ===== -->
+  <header class="header banner">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <h1><a class="brand" href="index.html">D2N</a></h1>
+          <h1 class="page-title">Portfolio</h1>
+          <p class="tagline">D2N Articles & Works — 공간정보·LiDAR·GIS 프로젝트</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- ===== Portfolio Grid ===== -->
+  <div id="portfolio">
+    <div class="container-fluid gal-container">
+      <div class="section-header">
+        <h2>Portfolio</h2>
+        <p class="desc">기업 주요 활동 및 성과</p>
+      </div>
+
+      <div class="row port-grid port-grid-viewport">
+        <!-- === 12개 카드 반복 === -->
+        <!-- 1 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-01.jpg" alt="시계열 데이터 분석">
+            <div class="box-content">
+              <h3 class="title">시계열 데이터 분석</h3>
+              <span class="post">기후변화 적응을 위한 열섬지도 구축</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="0" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-02.jpg" alt="공간정보 기반 지도 템플릿 생성">
+            <div class="box-content">
+              <h3 class="title">공간정보 기반 지도 템플릿 생성</h3>
+              <span class="post">생활 안전 대피소 자동 리포트 제공</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="1" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-03.jpg" alt="재해취약성분석">
+            <div class="box-content">
+              <h3 class="title">재해취약성분석</h3>
+              <span class="post">도시 기후변화에 따른 재해 취약성 분석</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="2" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-04.jpg" alt="도시재생뉴딜 기초조사">
+            <div class="box-content">
+              <h3 class="title">도시재생뉴딜 기초조사</h3>
+              <span class="post">도시 현황 데이터 수집 및 재생사업 기초자료 제공</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="3" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 5 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-05.jpg" alt="AI 기반 공간 데이터 분석">
+            <div class="box-content">
+              <h3 class="title">AI 기반 공간 데이터 분석</h3>
+              <span class="post">토지이용과 환경 요소를 통합한 도시 개발 적합지 예측</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="4" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 6 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-06.jpg" alt="3차원 디지털트윈 플랫폼">
+            <div class="box-content">
+              <h3 class="title">3차원 디지털트윈 플랫폼</h3>
+              <span class="post">도시 공간을 3D로 구현하여 시뮬레이션 및 의사결정 지원</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="5" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 7 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-07.jpg" alt="핸드헬드 라이다 동굴 관측">
+            <div class="box-content">
+              <h3 class="title">핸드헬드 라이다 동굴 관측</h3>
+              <span class="post">Handheld LiDAR 기반 동굴 지형 정밀 스캔 및 분석</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="6" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 8 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-08.jpg" alt="드론라이다(LiDAR) 관측">
+            <div class="box-content">
+              <h3 class="title">드론라이다(LiDAR) 관측</h3>
+              <span class="post">고해상도 라이다 데이터를 활용한 전력 인프라 위험도 분석</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="7" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 9 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-09.jpg" alt="GIS DB 구축">
+            <div class="box-content">
+              <h3 class="title">격자 기반 공간 패턴 분석</h3>
+              <span class="post">도시 구조와 역세권 영향권을 반영한 다차원 공간 특성 평가</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="8" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 10 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-10.jpg" alt="드론·LiDAR 현장 관측">
+            <div class="box-content">
+              <h3 class="title">드론·LiDAR 현장 관측</h3>
+              <span class="post">정밀 공간정보 수집을 위한 첨단 장비 운용</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="9" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 11 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-11.jpg" alt="3D 데이터 분석">
+            <div class="box-content">
+              <h3 class="title">3차원 데이터 분석</h3>
+              <span class="post">3차원 데이터 기반의 공간정보 정밀 해석</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="10" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- 12 -->
+        <div class="col-md-4 col-sm-6 co-xs-12 port-item">
+          <div class="box7">
+            <img src="img/portfolio/portfolio-12.jpg" alt="포인트클라우드 공간 해석">
+            <div class="box-content">
+              <h3 class="title">포인트클라우드 공간 해석</h3>
+              <span class="post">고해상도 포인트로 DSM·DEM·nDSM 생성</span>
+            </div>
+            <ul class="icon"><li><a href="#" class="fa fa-search" data-index="11" data-toggle="modal" data-target="#modal-id"></a></li></ul>
+          </div>
+        </div>
+        <!-- === 12개 카드 끝 === -->
+      </div>
+    </div>
+
+    <!-- ===== 상세 모달 ===== -->
+    <div id="modal-id" class="modal fade" tabindex="-1" role="dialog" aria-label="portfolio modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="닫기">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <!-- 메인 슬라이더 -->
+                <div class="port-slider">
+                  <div><img src="img/portfolio/portfolio-01.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-02.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-03.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-04.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-05.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-06.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-07.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-08.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-09.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-10.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-11.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-12.jpg" alt=""></div>
+                </div>
+
+                <!-- 썸네일 네비 -->
+                <div class="port-slider-nav">
+                  <div><img src="img/portfolio/portfolio-01.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-02.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-03.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-04.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-05.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-06.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-07.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-08.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-09.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-10.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-11.jpg" alt=""></div>
+                  <div><img src="img/portfolio/portfolio-12.jpg" alt=""></div>
+                </div>
+              </div>
+
+              <!-- 설명 영역 -->
+              <div class="col-12">
+                <h3 class="proj-title" id="projTitle">Project Overview</h3>
+                <p class="proj-desc" id="projDesc">
+                  현장 취득 데이터(드론·LiDAR·위성)를 수집·전처리·구조화하여 DB를 구축하고,
+                  GIS 분석·디지털트윈·대시보드 시각화로 정책/인프라/도시계획/안전진단 등의 의사결정을 지원합니다.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /모달 -->
+  </div><!-- /#portfolio -->
+
+<!-- Footer -->
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12"></div>
+      <div class="col-12">
+        <p>Copyright &#169; <a href="index.html">디투엔</a> All Rights Reserved.</p> <br>
+       <p style="font-size: 12px; color: #888;">Designed By <a href="https://htmlcodex.com" style="color: inherit; text-decoration: none;">HTML Codex</a></p>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Vendor JS -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery-migrate.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/slick/slick.min.js"></script>
+
+  <!-- 공통 스크립트 -->
+  <script src="js/main.js"></script>
+
+  <!-- 슬라이더 & 설명 스크립트 -->
+  <script>
+    $(function(){
+      // 카드 클릭 → 해당 인덱스로 이동
+      $('[data-index]').on('click', function(){
+        const idx = +$(this).data('index') || 0;
+        $('#modal-id').one('shown.bs.modal', function(){
+          $('.port-slider').slick('setPosition').slick('slickGoTo', idx, true);
+          updateCaption(idx);
+        });
+      });
+
+
+      // 슬라이드별 제목/설명
+// 포트폴리오 캡션 (data-index와 동일 순서)
+const CAPTIONS = [
+  { t: '시계열 데이터 분석',            d: '기후변화 적응을 위한 열섬지도 구축' },
+  { t: '공간정보 기반 지도 템플릿 생성', d: '생활 안전 대피소 자동 리포트 제공' },
+  { t: '재해취약성분석',                d: '도시 기후변화에 따른 재해 취약성 분석' },
+  { t: '도시재생뉴딜 기초조사',          d: '도시 현황 데이터 수집 및 재생사업 기초자료 제공' },
+  { t: 'AI 기반 공간 데이터 분석',       d: '토지이용과 환경 요소를 통합한 도시 개발 적합지 예측' },
+  { t: '3차원 디지털트윈 플랫폼',        d: '도시 공간을 3D로 구현하여 시뮬레이션 및 의사결정 지원' },
+  { t: '핸드헬드 라이다 동굴 관측',      d: 'Handheld LiDAR 기반 동굴 지형 정밀 스캔 및 분석' },
+  { t: '드론라이다(LiDAR) 관측',        d: '고해상도 라이다 데이터를 활용한 전력 인프라 위험도 분석' },
+  { t: '격자 기반 공간 패턴 분석',       d: '도시 구조와 역세권 영향권을 반영한 다차원 공간 특성 평가' },
+  { t: '드론·LiDAR 현장 관측',           d: '정밀 공간정보 수집을 위한 첨단 장비 운용' },
+  { t: '3차원 데이터 분석',              d: '3차원 데이터 기반의 공간정보 정밀 해석' },
+  { t: '포인트클라우드 공간 해석',        d: '고해상도 포인트로 DSM·DEM·nDSM 생성' }
+];
+
+
+      function updateCaption(i){
+        const c = CAPTIONS[i] || {t:'Project Overview', d:'현장 데이터 기반 DB·GIS 분석·시각화로 의사결정 지원.'};
+        $('#projTitle').text(c.t);
+        $('#projDesc').text(c.d);
+      }
+
+      // 메인 슬라이더
+      $('.port-slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        fade: false,
+        adaptiveHeight: true,
+        asNavFor: '.port-slider-nav',
+        prevArrow: '<button type="button" class="slick-prev" aria-label="이전"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+        nextArrow: '<button type="button" class="slick-next" aria-label="다음"><i class="fa fa-angle-right" aria-hidden="true"></i></button>'
+      }).on('afterChange', function(e, slick, current){ updateCaption(current); });
+
+      // 썸네일 네비 (화살표/텍스트 제거)
+      $('.port-slider-nav').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        asNavFor: '.port-slider',
+        dots: false,
+        arrows: false,
+        centerMode: true,
+        focusOnSelect: true,
+        responsive: [
+          { breakpoint: 1200, settings: { slidesToShow: 5 } },
+          { breakpoint: 992,  settings: { slidesToShow: 4 } },
+          { breakpoint: 768,  settings: { slidesToShow: 3 } },
+          { breakpoint: 576,  settings: { slidesToShow: 3 } }
+        ]
+      });
+
+      // 모달 열릴 때 캡션 초기화
+      $('#modal-id').on('shown.bs.modal', function(){
+        const idx = $('.port-slider').slick('slickCurrentSlide');
+        updateCaption(idx);
+      });
+    });
+  </script>
+</body>
+</html>

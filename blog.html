@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Blog | D2N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
+
+  <!-- Vendor CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- 사이트 공통 CSS -->
+  <link href="css/hover-style.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+
+
+<style>
+  /* Portfolio 페이지 헤더 타이틀 간격 조정 */
+  .page-header h1 {
+    margin-bottom: 10px; /* 기존보다 간격 축소 */
+  }
+  .page-header h2 {
+    margin-top: 0; /* 위쪽 여백 제거 */
+  }
+</style>
+
+
+  <!-- Blog 전용 스타일 -->
+  <style>
+    :root {
+      --brand-orange: #E67E22;
+      --card-bg: #fff;
+      --card-border: #e9eef5;
+      --card-shadow: 0 8px 22px rgba(17,24,39,.06);
+      --muted: #6b7280;
+      --title: #111827;
+    }
+
+    /* ===== Hero ===== */
+    .c-blog .hero {
+      position: relative;
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(32px, 4vh, 56px) 20px;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
+        url('img/blog-hero.jpg') center/cover no-repeat;
+    }
+    .c-blog .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-shadow: 0 6px 16px rgba(0,0,0,.15);
+    }
+    .c-blog .hero p.sub {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: clamp(14px, 1.15vw, 18px);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, .92);
+      padding: 0 10px;
+    }
+
+    /* ===== Blog 목록 ===== */
+    .c-blog .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 18px 60px;
+    }
+    .c-blog .title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .c-blog .title h2 {
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: #333;
+      font-size: clamp(22px, 3vw, 32px);
+    }
+    .c-blog .title p {
+      margin: 0;
+      color: #666;
+      font-size: clamp(14px, 1.5vw, 18px);
+    }
+
+    /* ===== 카드 그리드 ===== */
+    .c-blog .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 1024px) {
+      .c-blog .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .c-blog .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .c-blog .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .c-blog .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(17,24,39,.12);
+    }
+    .c-blog .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--card-border);
+    }
+    @media (max-width: 480px) {
+      .c-blog .card img {
+        height: 180px;
+      }
+    }
+    .c-blog .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .c-blog .card-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--title);
+      margin: 0;
+    }
+    .c-blog .card-body p {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+
+.c-blog .card-body a {
+  margin-top: auto;
+  align-self: flex-start;
+  color: #fff;
+  background: #fba93a;   /* 밝은 오렌지 (기본) */
+  padding: 8px 16px;
+  border-radius: 999px;  /* pill 버튼 느낌 */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background .2s ease;
+}
+
+.c-blog .card-body a:hover {
+  background: #e67e22;   /* 진한 오렌지 (hover 시) */
+}
+
+
+    /* ===== 페이지네이션 ===== */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pagination a {
+      color: #555;
+      padding: 10px 18px;
+      text-decoration: none;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #fff;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+      min-width: 40px;
+      text-align: center;
+    }
+    .pagination a:hover {
+      background-color: var(--brand-orange);
+      color: #fff;
+      border-color: var(--brand-orange);
+    }
+    .pagination a.active {
+      background-color: var(--brand-orange);
+      color: white;
+      border: 1px solid var(--brand-orange);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 공통 헤더 -->
+  <div class="menu" aria-label="menu button"><span></span></div>
+  <nav id="nav" aria-label="primary navigation">
+    <ul class="main">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="welcome.html">Welcome</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="equipment.html">LiDAR Equipment</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li class="active"><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="overlay"></div>
+
+  <!-- 블로그 본문 -->
+  <main class="c-blog">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="container">
+        <h1>Blog</h1>
+        <p class="sub">D2N의 최신 소식과 프로젝트 진행 과정을 공유합니다.</p>
+      </div>
+    </header>
+
+    <!-- Blog 목록 -->
+    <section class="wrap">
+      <div class="title">
+        <h2>D2N Articles</h2>
+        <p>D2N의 소식, 기술 트렌드, 프로젝트 인사이트를 만나보세요.</p>
+      </div>
+
+      <!-- 블로그 카드 12개 -->
+      <div class="grid">
+        <!-- 1 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P01.jpg" alt="Blog 1">
+          <div class="card-body">
+            <h3>지형·지물 분석을 위한 핵심 데이터: <br> DSM, DEM, nDSM, DOM</h3>
+            <p>라이다(LiDAR)와 항공사진으로 보는 3D 세상: DSM, DEM, nDSM, DOM 이란?</p>
+            <a href="https://blog.naver.com/d2ninc/223984896492" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P02.jpg" alt="Blog 2">
+          <div class="card-body">
+            <h3>드론 라이다 기반 산림 측량 및 임도 설계</h3>
+            <p>정밀 지형 데이터를 활용해 산림 자원을 효율적으로 관리하고 지속 가능한 임도 설계를 지원</p>
+            <a href="https://blog.naver.com/d2ninc/223310090378" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P03.jpg" alt="Blog 3">
+          <div class="card-body">
+            <h3>[드론라이다 정밀도] 관측 고도 및 속도에 따른 라이다(LiDAR) 데이터 영향</h3>
+            <p>드론 라이다 데이터 정밀도는 비행 고도와 속도에 크게 좌우되며 최적의 조건을 설정해야 고품질 데이터를 확보</p>
+            <a href="https://blog.naver.com/d2ninc/223303787395" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P04.jpg" alt="Blog 4">
+          <div class="card-body">
+            <h3>[전력선·거리측정] 드론 라이다를 이용한 안전한 전력선 관리 및 위험요소 예방</h3>
+            <p>드론 라이다를 활용해 전력선 주변의 장애물과 위험 요소를 정밀 측정하여 안전한 전력선 관리와 사고 예방을 지원</p>
+            <a href="https://blog.naver.com/d2ninc/223237676961" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 5 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P05.jpg" alt="Blog 5">
+          <div class="card-body">
+            <h3>[전력선·현황분석] 드론 LiDAR 기술을 활용한 전력선 및 수목 위해개소 현황 파악</h3>
+            <p>드론 LiDAR 데이터를 통해 전력시설 위해요소 검출을 위한 업무 프로세스 </p>
+            <a href="https://blog.naver.com/d2ninc/223209857572" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 6 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P06.jpg" alt="Blog 6">
+          <div class="card-body">
+            <h3>[해안‧지질] 해안 생태계 관측을 위한 새로운 시각 : 드론 라이다를 통한 해안관측</h3>
+            <p>드론 라이다를 활용해 해안선과 지형 변화를 정밀 관측하고, 해안 생태계 보전과 지질 분석에 새로운 시각을 제공</p>
+            <a href="https://blog.naver.com/d2ninc/223146076537" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 7 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P07.jpg" alt="Blog 7">
+          <div class="card-body">
+            <h3>[네트워크 분석] 도시 교통 계획과 인프라 효율성 향상을 위한 OD 행렬 분석</h3>
+            <p>OD(출발-도착) 행렬 기반 네트워크 분석을 통해 도시 교통 체계 개선과 인프라 활용 효율성을 높이는 방안</p>
+            <a href="https://blog.naver.com/d2ninc/223139694695" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 8 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P08.jpg" alt="Blog 8">
+          <div class="card-body">
+            <h3>[DB 위치생성] 지오코딩·지오태깅·지오매핑:<br>위치 생성과 지리정보 시각화</h3>
+            <p>지오코딩, 태깅, 매핑 기술을 활용해 디지털 정보에 위치를 부여하고 지리정보를 시각화하여 현실 세계와 연결</p>
+            <a href="https://blog.naver.com/d2ninc/223134802931" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 9 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P09.jpg" alt="Blog 9">
+          <div class="card-body">
+            <h3>[위성영상·열환경지도] 위성영상을 활용한 자료 구축 및 영상 분석</h3>
+            <p>위성영상 기반으로 지리·공간 데이터를 구축하고 열환경 지도를 작성하여 주변 열지대를 탐색·분석</p>
+            <a href="https://blog.naver.com/d2ninc/223132641248" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 10 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P10.jpg" alt="Blog 10">
+          <div class="card-body">
+            <h3>[분포·밀도] 공간 클러스터 통계 분석을 위한 GIS 셀 격자 활용</h3>
+            <p>GIS 셀 격자 분석을 통해 지리공간 데이터를 분포·밀도 단위로 해석하여 효과적인 공간 클러스터 분석에 활용</p>
+            <a href="https://blog.naver.com/d2ninc/223132640678" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 11 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P11.jpg" alt="Blog 11">
+          <div class="card-body">
+            <h3>[드론라이다 문화재] 드론 라이다(LiDAR)로 탐험하는 문화유산</h3>
+            <p>드론 라이다 기술을 활용해 접근이 어려운 문화유산을 정밀하게 탐사하고 보존 작업의 효율성과 정확성 확보</p>
+            <a href="https://d2n.inblog.io/%EB%93%9C%EB%A1%A0%EB%9D%BC%EC%9D%B4%EB%8B%A4-%EB%AC%B8%ED%99%94%EC%9E%AC%EB%93%9C%EB%A1%A0-%EB%9D%BC%EC%9D%B4%EB%8B%A4lidar%EB%A1%9C-%ED%83%90%ED%97%98%ED%95%98%EB%8A%94-%EB%AC%B8%ED%99%94%EC%9C%A0%EC%82%B0-13215" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 12 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P12.jpg" alt="Blog 12">
+          <div class="card-body">
+            <h3>Handheld LiDAR(핸드라이다) 장비 소개</h3>
+            <p>[Handheld LiDAR] 휴대용 라이다 스캐닝 장비(GS-100G)</p>
+            <a href="https://d2n.inblog.io/handheld-lidar-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EB%9D%BC%EC%9D%B4%EB%8B%A4-%EC%8A%A4%EC%BA%90%EB%8B%9D-%EC%9E%A5%EB%B9%84gs100g-13883" target="_blank">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <div class="pagination">
+        <a href="blog.html" class="active">1</a>
+        <a href="blog-page2.html">2</a>
+      </div>
+    </section>
+  </main>
+
+<!-- Footer -->
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12"></div>
+      <div class="col-12">
+        <p>Copyright &#169; <a href="index.html">디투엔</a> All Rights Reserved.</p> <br>
+       <p style="font-size: 12px; color: #888;">Designed By <a href="https://htmlcodex.com" style="color: inherit; text-decoration: none;">HTML Codex</a></p>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Vendor JS -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery-migrate.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

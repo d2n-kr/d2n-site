@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact | D2N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
+
+  <!-- Vendor CSS (사이트 공통) -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- 사이트 공통 CSS -->
+  <link href="css/hover-style.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+
+  <!-- =============================
+       Contact 페이지 전용 스타일 (Scoped)
+       ============================= -->
+  <style>
+    /* 색상 토큰(은은한 주황톤 + 중립 컬러) */
+    :root{
+      --brand-orange: #E67E22;
+      --card-bg: #ffffff;
+      --card-border: #e9eef5;
+      --card-shadow: 0 8px 22px rgba(17,24,39,.06);
+      --muted: #6b7280;     /* 값 텍스트 */
+      --title: #111827;     /* 라벨 텍스트 */
+      --icon-bg: #fff5eb;   /* 아이콘 캡슐 배경 (아주 연한 주황) */
+    }
+
+    /* ===== 상단 히어로 (Welcome 느낌 적용) ===== */
+    .c-contact .hero{
+      position: relative;
+      min-height: 40vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: clamp(32px,4vh,56px) 20px;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url('img/contact-hero.jpg') center/cover no-repeat;
+    }
+    .c-contact .hero h1{
+      font-size: clamp(34px,5.2vw,56px);
+      font-weight: 800;
+      letter-spacing: .4px;
+      margin-bottom: 10px;
+      text-shadow: 0 6px 16px rgba(0,0,0,.15);
+    }
+    .c-contact .hero p.sub{
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(14px,1.15vw,18px);
+      line-height: 1.8;
+      color: rgba(255,255,255,.92);
+    }
+
+    /* ===== 섹션 컨테이너 ===== */
+    .c-contact .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 18px 84px;
+      background: transparent;
+    }
+
+    /* 타이틀(중앙) */
+    .c-contact .title {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+    .c-contact .title h2 {
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: #333;
+    }
+    .c-contact .title p {
+      margin: 0;
+      color: #666;
+    }
+
+    /* ===== 레이아웃: 왼쪽 카드 / 오른쪽 지도 ===== */
+    .c-contact .grid {
+      --map-h: 432px;                  /* 지도/카드 총 높이 */
+      display: grid;
+      grid-template-columns: 640px 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    /* 왼쪽 컬럼: 3장 카드를 균등 분할 (총 높이 = --map-h) */
+    .c-contact .stack{
+      display: grid;
+      height: var(--map-h);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 14px;
+      align-content: stretch;
+    }
+
+    /* ===== 카드(색감/정렬 개선) ===== */
+    .c-contact .card {
+      display: grid;
+      grid-template-columns: 72px 1fr; /* 아이콘 칸 */
+      gap: 16px;
+      align-items: center;             /* ← 아이콘/텍스트 모두 수직 중앙 */
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: var(--card-shadow);
+    }
+
+    /* 이미지 아이콘 캡슐 */
+    .c-contact .card .ico{
+      width: 60px; height: 60px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--icon-bg);
+      box-shadow:
+        inset 0 0 0 6px #fff,          /* 안쪽 흰 링 */
+        0 2px 8px rgba(0,0,0,.05);     /* 아주 부드러운 그림자 */
+    }
+    .c-contact .card .ico img{
+      width: 30px; height: 30px; display:block;
+      filter: saturate(.95);           /* 과한 색감 살짝 눌러줌 */
+    }
+    /* 혹시 남아있을 폰트아이콘 숨김 */
+    .c-contact .card .ico i{ display:none; }
+
+    .c-contact .card .meta {
+      display: flex; flex-direction: column;
+      gap: 6px; justify-content: center;
+    }
+
+    /* 글자 크기(요청 반영) + 색감 개선 */
+    .c-contact .card .label {
+      font-weight: 800;
+      color: var(--title);
+      font-size: 21px;                 /* 16px → +30% */
+      letter-spacing: .2px;
+    }
+    .c-contact .card .value {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 19px;                 /* 15px → +25% */
+    }
+
+    /* 오른쪽: 지도 (총 높이 = --map-h) */
+    .c-contact .map { height: var(--map-h); }
+    .c-contact .map iframe {
+      width: 100%; height: 100%;
+      border: 0;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(17,24,39,.08);
+    }
+
+    /* ===== 반응형 ===== */
+    @media (max-width: 1199.98px) {
+      .c-contact .grid { grid-template-columns: 560px 1fr; }
+    }
+    @media (max-width: 991.98px) {
+      .c-contact .grid {
+        grid-template-columns: 1fr;
+        --map-h: auto;                 /* 모바일은 자동 높이 */
+      }
+      .c-contact .stack{
+        height: auto;
+        grid-template-rows: none;
+      }
+      .c-contact .card{ min-height: 120px; }
+      .c-contact .map iframe { min-height: 360px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== 사이트 공통 헤더/네비게이션 ========== -->
+  <div class="menu" aria-label="menu button"><span></span></div>
+  <nav id="nav" aria-label="primary navigation">
+    <ul class="main">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="welcome.html">Welcome</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="equipment.html">LiDAR Equipment</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="overlay"></div>
+
+  <!-- =========================
+       Contact 본문 (스코프: .c-contact)
+       ========================= -->
+  <main class="c-contact">
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="container">
+        <h1>Contact</h1>
+        <p class="sub">D2N(디투엔) 중심에는 항상 고객이 있으며 <br>가치 있는 서비스 제공 및 기업이 되기 위해 노력하겠습니다.</p>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <section class="wrap">
+      <div class="title">
+        <h2>Get in Touch</h2>
+ 
+      </div>
+
+      <!-- 그리드 -->
+      <div class="grid">
+
+        <!-- 왼쪽: 정보 카드 (총 높이 = 지도와 동일, 3장 균등) -->
+        <div class="stack">
+
+          <!-- Address -->
+          <div class="card">
+            <div class="ico">
+              <img src="img/Icon/Pin.png" alt="Address">
+            </div>
+            <div class="meta">
+              <div class="label">Address</div>
+              <div class="value">대구광역시 동구 동북로75길 13  상가 401호 <br> ㉾ 41181</div>
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="card">
+            <div class="ico">
+              <img src="img/Icon/email.png" alt="E-mail">
+            </div>
+            <div class="meta">
+              <div class="label">E-mail</div>
+              <div class="value">d2n@d2n.kr</div>
+            </div>
+          </div>
+
+          <!-- Mobile / Phone -->
+          <div class="card">
+            <div class="ico">
+              <img src="img/Icon/Phone.png" alt="Phone">
+            </div>
+            <div class="meta">
+              <div class="label">Mobile</div>
+              <div class="value">+82 010-6613-8118</div>
+              <div class="value">+82 (053) 522-0320</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 오른쪽: 지도 (높이 = --map-h) -->
+        <div class="map">
+          <iframe
+            title="회사 위치"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9410.613944818331!2d128.62441528532344!3d35.88731488068442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3565e1c3c3034793%3A0xa2e5a35b2c536ad5!2z64yA6rWs6rSR7Jet7IucIOuPmeq1rCDrj5nrtoHroZw3Neq4uCAxMw!5e0!3m2!1sko!2skr!4v1756282212124!5m2!1sko!2skr"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+<!-- Footer -->
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12"></div>
+      <div class="col-12">
+        <p>Copyright &#169; <a href="index.html">디투엔</a> All Rights Reserved.</p> <br>
+       <p style="font-size: 12px; color: #888;">Designed By <a href="https://htmlcodex.com" style="color: inherit; text-decoration: none;">HTML Codex</a></p>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Vendor JS -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery-migrate.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 사이트 공통 JS -->
+  <script src="js/main.js"></script>
+
+  <!-- Smooth scroll -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>

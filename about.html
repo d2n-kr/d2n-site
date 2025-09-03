@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>About | D2N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/favicon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Site CSS -->
+  <link href="css/hover-style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- Page override -->
+  <style>
+    :root{
+      /* === 색상 === */
+      --accent:#E67E22;
+      --ink:#0f2233;
+      --muted:#6b7b8c;
+      --line:#e9edf2;
+
+      /* === 레이아웃 스케일 변수 (한 번에 전체 조절) === */
+      --container-max: 1440px;                 /* 전체 컨테이너 최대폭 (넓혀서 1920에서 시원하게) */
+      --section-pad-y: 48px;                   /* 섹션 상하 여백 (기존 대비 ~25% 축소) */
+      --grid-gap: clamp(24px, 5vw, 90px);      /* 좌/우 칼럼 간격 (기존 대비 약 50% 축소) */
+      --stack-gap: 12px;                       /* 좌측 텍스트 블록 사이 간격 (기존 22px → 12px) */
+      --panel-pad: 16px 18px;                  /* 우측 카드 상/하 설명 여백 (기존 22px → 16px) */
+      --divider-mt: 12px;                      /* 구분선 위 여백 */
+      --divider-mb: 16px;                      /* 구분선 아래 여백 */
+    }
+
+    /* ===== Hero (유지) ===== */
+    .header.banner{
+      background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url('img/about-hero.jpg') center/cover no-repeat;
+      padding:60px 0 12px !important;
+      position:relative;
+    }
+    .header.banner::before,.header.banner::after{content:none;}
+    .header.banner .brand{
+      color:#fff;font-weight:800;letter-spacing:1px;text-decoration:none;
+      transition:color .15s;margin-bottom:14px !important;line-height:1.1 !important;
+    }
+    .header.banner .brand:hover{color:var(--accent);}
+    .header.banner .page-title{margin-bottom:8px !important;}
+    .header.banner .tagline{color:rgba(255,255,255,.95);}
+
+    /* ===== 공통 컨테이너/섹션 ===== */
+    section{ padding: var(--section-pad-y) 0; }
+    .container-wide{ max-width: var(--container-max); margin:0 auto; padding: 0 24px; }
+
+    .divider{
+      height:2px;background:var(--line);
+      margin: var(--divider-mt) 0 var(--divider-mb); border-radius:2px;
+    }
+
+    /* ===== 중앙 타이틀 (주황 점 제거) ===== */
+    .section-header--center{
+      display:flex; justify-content:center; align-items:center;
+      width:100%; margin: 0 0 18px; text-align:center;
+    }
+    .section-header--center .kicker{
+      display:inline-block; font-weight:800; letter-spacing:.5px;
+      font-size: clamp(22px, 2.6vw, 32px);
+      color:#193147; margin:0; padding: 4px 12px 8px; position:relative;
+    }
+    .section-header--center .kicker::before,
+    .section-header--center .kicker::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%);
+      width:280px; height:2px; background:#e3e8ef; border-radius:2px;
+    }
+    .section-header--center .kicker::before{ top:-10px; }
+    .section-header--center .kicker::after{ bottom:-8px; }
+
+    /* ===== 2열 그리드 (모든 섹션 확장용) ===== */
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--grid-gap);            /* 좌/우 간격 */
+      align-items: stretch;            /* 동일 높이 */
+    }
+    @media (max-width: 992px){
+      .grid-2{ grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    /* ===== 좌측 스택(모든 섹션 공유) ===== */
+    .left-stack{ display:flex; flex-direction:column; gap: var(--stack-gap); height:100%; }
+
+    /* ===== 오른쪽 패널(모든 섹션 공유) ===== */
+    .feature-panel{
+      border-radius:16px; overflow:hidden; background:#fff;
+      box-shadow:0 12px 34px rgba(0,0,0,.08);
+      display:flex; flex-direction:column; height:100%;
+    }
+    .feature-top, .feature-bottom{ padding: var(--panel-pad); font-size:1rem; line-height:1.75; color:#3d5062; }
+    .feature-bottom b{ color:var(--ink); }
+    .feature-img{ width:100%; height:auto; display:block; object-fit:contain; } /* 자르지 않음 */
+
+    /* ===== 데이터 사업 타이포 ===== */
+    #data-business{ border-top:1px solid var(--line); }
+    .db-title{
+      color:#9f4d4d;font-weight:800;letter-spacing:-.6px;
+      font-size: clamp(28px, 4vw, 48px); line-height:1.02; margin:0 0 2px;   /* ⬅ 데이터 사업 부문 */
+    }
+    .db-sub{
+      color:#121c25;font-weight:800;letter-spacing:-.3px;
+      font-size: clamp(18px, 2.2vw, 26px); line-height:1.1; margin:0 0 6px;    /* ⬅ Data structuring and analysis */
+    }
+    .db-lead{ color:var(--ink); font-size:1.02rem; line-height:1.8; margin:0; }
+    .db-copy{ color:var(--muted); font-size:1rem; line-height:1.8; margin:10px 0 0; max-width:720px; }
+
+    .db-check{ margin:12px 0 4px; padding:0; list-style:none; }
+    .db-check li{
+      margin:6px 0; color:#1b2a36; font-size:1rem; line-height:1.6;
+      display:flex; gap:8px; align-items:flex-start;
+    }
+    .db-check li i{ color:var(--accent); transform:translateY(2px); }
+
+    .db-process{
+      margin-top:14px; border-radius:12px; border:4px solid #fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.05); width:100%; height:auto;
+    }
+
+
+
+
+/* ===== DATA Part 전용 타이틀 색상 ===== */
+.data-header .kicker,
+#data-business .db-title {
+  color: #9f4d4d; /* 진한 붉은색 */
+}
+#data-business .db-sub {
+  color: rgba(159, 77, 77, 0.6); /* 동일 색상 but 반투명 */
+}
+
+/* ===== SYSTEM Part 전용 타이틀 색상 ===== */
+.system-header .kicker,
+#system-business .db-title {
+  color: #0056b3;   /* 딥 블루 */
+}
+#system-business .db-sub {
+  color: rgba(0, 86, 179, 0.6); /* 반투명 딥 블루 */
+}
+
+/* ===== DRONE Part 전용 타이틀 색상 ===== */
+.drone-header .kicker,
+#drone-business .db-title {
+  color: #FFD700;   /* 금색 */
+}
+#drone-business .db-sub {
+  color: rgba(0, 137, 123, 0.6); /* 반투명 청록 */
+}
+
+/* ===== EQUIPMENT Part 전용 타이틀 색상 ===== */
+.equip-header .kicker,
+#equip-business .db-title {
+  color: #6A1B9A;   /* 퍼플 */
+}
+#equip-business .db-sub {
+  color: rgba(106, 27, 154, 0.6); /* 반투명 퍼플 */
+}
+
+/* ===== PLATFORM Part 전용 타이틀 색상 ===== */
+.platform-header .kicker,
+#platform-business .db-title {
+  color: #E67E22;   /* 브랜드 오렌지 */
+}
+#platform-business .db-sub {
+  color: rgba(230, 126, 34, 0.6); /* 반투명 오렌지 */
+}
+
+
+
+
+
+
+/* ===== DRONE Part (Dark Hero) ===== */
+.drone-hero{
+  background:#1f2429;            /* 다크 배경 */
+  color:#fff;
+  padding: 72px 0 80px;          /* 상단/하단 여백 */
+  position:relative;
+}
+
+.drone-hero .container-wide{ 
+  max-width: var(--container-max); 
+}
+
+.drone-eyebrow{
+  text-align:center;
+  margin:0 0 10px;
+  font-weight:800;
+  letter-spacing:.3px;
+  color: rgba(255,255,255,.75);
+}
+
+.drone-title{
+  text-align:center;
+  font-weight:800;
+  line-height:1.15;
+  margin: 0 auto 18px;
+  font-size: clamp(24px, 3.5vw, 56px);   /* 반응형 크기 */
+  max-width: 1100px;
+  color: #ffffff;  /* 글자색 흰색 추가 */
+}
+
+/* 공통 CTA 버튼 (드론/플랫폼) */
+.btn-cta{
+  background:#FFB74D;   /* 기본: 밝은 노랑(이미지 좌측 느낌) */
+  color:#fff;
+  border-radius:999px;
+  padding:12px 28px;
+  font-weight:800;
+}
+.btn-cta:hover{
+  background:#E67E22;   /* 호버: 브랜드 오렌지(이미지 우측 느낌) */
+  color:#FFF8E1;
+}
+
+
+
+/* CTA 버튼: 기본 + 방문 */
+.btn-cta,
+.btn-cta:link,
+.btn-cta:visited {
+  color: #fff;             /* 항상 흰색 */
+  background: #FFB74D;     /* 기본(연한 주황) */
+  text-decoration: none;
+  outline: none;
+}
+
+/* hover에서만 진한 주황 */
+.btn-cta:hover {
+  color: #FFF8E1;          
+  background: #E67E22;
+}
+
+/* 클릭 후 focus/active 상태도 기본색으로 유지 */
+.btn-cta:focus,
+.btn-cta:active,
+.btn-cta:focus-visible {
+  color: #fff;
+  background: #FFB74D;   /* 기본색 */
+  outline: none;
+}
+
+
+
+
+
+
+
+/* 카드 그리드 */
+.drone-grid{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+/* 카드 */
+.drone-card{
+  background:#fff;
+  color:#0f2233;
+  border-radius:16px;
+  padding:22px 18px 28px;             /* 여백 조금 더 확보 */
+  box-shadow: 0 14px 34px rgba(0,0,0,.25);
+  display:flex;
+  flex-direction:column;
+  align-items:center;                 /* 내용 중앙 정렬 */
+  text-align:center;                  /* 텍스트 중앙 정렬 */
+  min-height: 400px;                  /* 카드 높이 확장 */
+}
+
+/* 카드 썸네일 */
+.drone-card .thumb{
+  width:100%;
+  border-radius:12px;
+  overflow:hidden;
+  background:#0b0f13;
+  margin-bottom:14px;
+  height: 260px;                      /* 이미지 높이 크게 */
+}
+.drone-card img{
+  width:100%; 
+  height:100%;
+  object-fit: cover; 
+  display:block;
+}
+
+/* 카드 텍스트 */
+.drone-card .eyebrow{
+  margin:0 0 6px;
+  color:#7b8a99;
+  font-size:.95rem;
+  text-align:center;
+}
+.drone-card .title{
+  margin:0; 
+  font-weight:800;
+  font-size: clamp(16px, 1.4vw, 22px);
+  text-align:center;
+}
+
+
+
+/*드론 PDF 다운로드*/
+.drone-hero .btn-cta { 
+  visibility: visible;     
+  display: inline-block;     /* 버튼 크기는 내용에 맞게 */
+  margin: 16px auto 20px;    /* 위 16px, 아래 20px → 간격 축소 */
+  text-align: center;        
+  padding: 12px 32px;        /* 버튼 안쪽 여백 */
+  font-size: 1rem;           
+  border-radius: 8px;
+  background: var(--accent); /* 브랜드 오렌지 */
+  color: #fff;
+  font-weight: 800;
+}
+
+/* 버튼을 감싸는 부모 영역에 중앙 정렬 보장 */
+.drone-hero {
+  text-align: center;        /* 내부 버튼 중앙 정렬 */
+}
+
+
+
+.drone-header .kicker::before,
+.drone-header .kicker::after {
+  background: #777;         /* 밑줄 흰색 */
+  opacity: 0.4;             /* 살짝 옅게 */
+}
+
+/* 반응형 */
+@media (max-width: 1200px){
+  .drone-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 992px){
+  .drone-grid{ grid-template-columns: repeat(2, 1fr); }
+  .drone-title{ font-size: clamp(22px, 4.6vw, 44px); }
+}
+@media (max-width: 576px){
+  .drone-grid{ grid-template-columns: 1fr; }
+  .drone-hero{ padding: 56px 0; }
+  .drone-card{ min-height: 360px; }    /* 모바일에서는 조금 줄임 */
+  .drone-card .thumb{ height: 220px; } /* 모바일용 이미지 높이 */
+}
+
+
+
+
+
+/* ===== PLATFORM Full-bleed Hero ===== */
+.platform-hero{
+  position: relative;
+  /* 반투명 오버레이 + 배경 이미지 */
+  background:
+    linear-gradient( rgba(0,0,0,.55), rgba(0,0,0,.55) ),
+    url('img/platform/platform-hero.jpg') center/cover no-repeat;
+  color:#fff;
+  /* 화면을 꽉 채우되 상단 헤더를 감안해 살짝 여유 */
+  min-height: 92vh;
+  display:flex;
+  align-items:center;         /* 수직 가운데 */
+  text-align: center;         /* 수평 가운데 */
+  padding: 64px 0;            /* 상·하 여백(모바일에서 숨쉴 공간) */
+}
+
+.platform-hero .container-wide{
+  max-width: 1200px;          /* 텍스트 줄 길이 컨트롤 */
+}
+
+.platform-title{
+  font-weight: 800;
+  line-height: 1.08;
+  margin: 10px auto 14px;
+  font-size: clamp(28px, 5vw, 64px);
+  letter-spacing: -.4px;
+  color:#fff;
+}
+
+.platform-lead{
+  margin: 0 auto 22px;
+  max-width: 900px;
+  font-size: clamp(15px, 1.6vw, 20px);
+  line-height: 1.9;
+  color: rgba(255,255,255,.92);
+}
+
+/* 플랫폼 파트 상단 라인/색은 기존 중앙 타이틀 스타일 재사용 */
+.platform-header .kicker{
+  color:#E67E22;              /* 브랜드 오렌지 포인트 */
+}
+
+/* 버튼 간격과 중앙 배치는 기존 .btn-cta 규칙 활용 */
+.platform-hero .btn-cta{
+  display:inline-block;
+  margin: 10px auto 0;        /* 아래 간격 과하지 않게 */
+  padding: 12px 28px;
+}
+
+/* 반응형: 작은 화면에서 높이 과도하면 살짝 축소 */
+@media (max-width: 576px){
+  .platform-hero{ min-height: 80vh; padding: 48px 0; }
+  .platform-lead{ margin-bottom: 18px; }
+}
+
+
+
+
+
+
+
+
+
+/* ================== LiDAR Part Theme ================== */
+/* 컬러 변수 (필요 시 상단 :root에 병합) */
+#lidar-business {
+  --bg-deep: #0f1a20;      /* UAV 파트 배경(참조용) */
+  --bg-dark: #1a242c;      /* LiDAR 섹션 배경 */
+  --card-dark: #121b21;    /* 패널/카드 배경 */
+  --text-main: #e8f1f2;    /* 본문 텍스트 */
+  --text-dim: rgba(232,241,242,0.75);
+  --teal: #009688;         /* 포인트(기존 유지) */
+  --teal-dim: rgba(0,150,136,0.65);
+  --divider: rgba(255,255,255,0.12);
+  --shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* 섹션 배경 & 위쪽 연결 그라데이션 (UAV → LiDAR 자연스러운 전환) */
+#lidar-business {
+  background:
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-dark) 18%),
+    var(--bg-dark);
+  color: var(--text-main);
+  padding: 64px 0 88px;
+}
+
+/* 컨테이너가 흰 배경에 맞춰져 있었다면 여백만 유지 */
+#lidar-business .container-wide { position: relative; }
+
+/* LiDAR Part 타이틀(Data/System과 동일 톤으로) */
+#lidar-business .lidar-header .kicker {
+    font-weight: 800 !important;                 /* 두껍게 */
+    letter-spacing: .5px !important;             /* DATA/SYSTEM과 동일 */
+    font-size: clamp(22px, 2.6vw, 32px) !important;
+    color: var(--teal) !important;               /* 색상은 LiDAR 전용 */
+    margin: 0 0 12px;
+    text-align: center;
+}
+
+
+#lidar-business .db-title {
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 2px;
+  color: var(--text-main); /* LiDAR 색상 유지 */
+}
+
+
+/* LiDAR 서브타이틀 반투명 (간단 버전) */
+#lidar-business .db-sub{
+  color: rgba(178,223,219,0.85); /* 기존 0.65 → 0.55로 더 옅게 */
+  font-weight: 800;
+}
+
+#lidar-business .divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 18px 0 22px;
+}
+
+/* 리드/본문 */
+#lidar-business .db-lead { color: var(--text-dim); font-size: 1.05rem; }
+#lidar-business .db-copy { color: var(--text-dim); margin-top: 8px; }
+
+/* 레이아웃 */
+#lidar-business .grid-2 {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 28px;
+  align-items: start;
+}
+
+#lidar-business .left-stack > div { margin-bottom: 14px; }
+#lidar-business .m-0 { margin: 0; }
+
+/* 체크리스트 */
+#lidar-business .db-check { list-style: none; margin: 8px 0 0; padding: 0; }
+
+
+
+#lidar-business .db-check {
+  list-style: none;
+  margin: 0;
+  padding-left: 24px;   /* ← 타이틀 대비 들여쓰기 (조절 가능: 20~30px) */
+}
+
+#lidar-business .db-check li {
+  display: flex;
+  gap: 8px;             /* 아이콘과 텍스트 간격 */
+  align-items: flex-start;
+  color: var(--text-main);
+  padding: 2px 0;
+  line-height: 1.35;
+  font-size: 0.97rem;
+}
+
+#lidar-business .db-check i {
+  color: var(--teal);
+  margin-top: 2px;
+  min-width: 16px;
+}
+
+
+
+
+/* 사례 패널 카드 */
+#lidar-business .feature-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+              var(--card-dark);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+#lidar-business .feature-top,
+#lidar-business .feature-bottom {
+  padding: 18px 18px 0 18px;
+  color: var(--text-dim);
+}
+#lidar-business .feature-bottom { padding: 14px 18px 20px; }
+#lidar-business .feature-img {
+  display: block; width: 100%; height: auto;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* 반응형 */
+@media (max-width: 1080px) {
+  #lidar-business .grid-2 { grid-template-columns: 1fr; }
+  #lidar-business { padding: 56px 0 72px; }
+}
+
+/* ===== LiDAR Part 전용 타이틀 색상(유지) ===== */
+.lidar-header .kicker,
+#lidar-business .db-title { color: var(--text-main); }  /* 타이틀은 메인 텍스트 컬러 */
+#lidar-business .db-title b,
+#lidar-business .kicker { color: var(--teal); }         /* 포인트는 청록 유지 */
+
+
+
+
+
+
+
+
+/* ===== LiDAR Deep Black Sections (Cleaned) ===== */
+.lidar-dark{
+  --deep:#161c20;   /* 아까 말씀드린 중간색 */
+  --card:#12171c;         /* 카드/타일 배경 */
+  --line:rgba(255,255,255,.08);
+  --ink:#eaf2f4;          /* 본문 텍스트 */
+  --ink-dim:rgba(234,242,244,.78);
+  --teal:#009688;         /* 포인트(기존 LiDAR 컬러) */
+  --accent:#E67E22;       /* 오렌지 포인트(사이트 공통) */
+  background: var(--deep);
+  color: var(--ink);
+  padding: 64px 0 88px;
+ 
+}
+
+/* 섹션 타이틀 */
+.lidar-dark .section-header--center { margin: 6px 0 18px; }
+.lidar-dark .lidar-dark-title{
+  color:#fff;
+  font-weight:800;
+  font-size: clamp(26px,3vw,40px);
+  letter-spacing:.2px;
+}
+
+/* 얇은 구분선 */
+.lidar-divider { height:1px; background: var(--line); border-radius:2px; margin: 12px 0 16px; }
+
+
+
+
+/* 헤더 히어로 */
+.lidar-hero-banner{
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 14px 34px rgba(0,0,0,.35);
+  margin-bottom:8px;
+
+}
+
+.lidar-hero-banner figure{ margin:0; }
+.lidar-hero-banner img{ width:100%; height:auto; display:block; }
+.lidar-hero-text{
+  padding:16px 18px 8px;
+  color:var(--ink-dim);
+}
+.lidar-hero-text h3{ margin:0 0 6px; color:#fff; font-weight:800; }
+
+
+
+
+/* 130G 하이라이트 카드 */
+.lidar-flagcard{
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), var(--card);
+  border:1px solid var(--line); border-radius:14px;
+  padding:14px 16px; box-shadow:0 10px 28px rgba(0,0,0,.26);
+}
+.lidar-flagcard .db-sub { margin: 0 0 8px; }
+.lidar-flagcard .db-check{
+  list-style:none; margin:10px 0 0; padding:0; display:grid; gap:6px;
+}
+.lidar-flagcard .db-check li{
+  color: var(--ink); line-height:1.55;
+  background: rgba(255,255,255,.04); border:1px solid var(--line);
+  border-radius:10px; padding:10px 12px;
+}
+.lidar-flagcard .db-check i{ color: var(--accent); margin-right:8px; }
+
+/* 마지막 섹터(좌 이미지 + 우 카피) */
+.lidar-final{ gap:22px; align-items:center; margin-bottom:18px; }
+.lidar-final .final-left img{
+  width:100%; height:auto; display:block;
+  border-radius:14px; border:1px solid var(--line);
+  box-shadow:0 12px 30px rgba(0,0,0,.32);
+}
+
+
+/* 타이틀 */
+.final-right h3 {
+  font-size: clamp(26px, 3vw, 38px); /* 크게 조정 */
+  font-weight: 800;
+  color: #FFD54F; /* 노랑 포인트 */
+  margin: 0 0 16px;
+}
+
+/* 본문 */
+.lidar-final .final-right p {
+  font-size: 1.08rem; / 
+  line-height: 1.9;   /* 가독성 확보 */
+  margin: 14px 0 18px;  /* 위아래 간격 더 크게 */
+  color: rgba(234,242,244,.9); /* 조금 더 선명하게 */
+}
+
+
+/* "강력한 최적의 라이다 장비 소개" 타이틀 전용 스타일 */
+.lidar-flag-title {
+  color: rgba(230, 126, 34, 0.8);  /* 연한 주황 + 70% 불투명도 */
+  font-size: clamp(24px, 2.8vw, 36px);
+  font-weight: 800;
+  margin: 20px 0 14px;
+  text-align: center;
+}
+
+
+
+.lidar-final .final-right p + p{ margin-top:8px; }
+.lidar-final .final-right .final-accent{
+  color:#FFF3CD; background:rgba(230,126,34,.1);
+  border-left:4px solid var(--accent);
+  padding:10px 12px; border-radius:10px; margin-top:10px;
+}
+
+/* 3 타일 */
+.lidar-tiles{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:18px;
+  margin: 14px 0 26px;
+}
+.lidar-tile{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+  display:flex; flex-direction:column;
+}
+.lidar-tile img{ width:100%; height:auto; display:block; }
+.lidar-tile .tile-body{ padding:14px 14px 16px; color:var(--ink-dim); }
+.lidar-tile .tile-title{ margin:0 0 6px; color:#fff; font-weight:800; }
+
+/* 스펙 섹션 */
+.lidar-specs{ margin: 20px 0 28px; }
+.lidar-specs .specs-left{ padding-right:8px; }
+.lidar-specs .specs-title{ margin:0 0 10px; color:#fff; font-weight:800; }
+.lidar-specs .specs-list{
+  list-style:none; margin:0; padding:0;
+  display:grid; gap:8px;
+}
+.lidar-specs .specs-list li{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 12px;
+  line-height:1.5;
+}
+.lidar-specs .specs-note{
+  margin:12px 0 0; color:var(--ink-dim); font-size:.95rem;
+}
+.lidar-specs .specs-right img{
+  width:100%; height:auto; display:block;
+  border-radius:12px; border:1px solid var(--line);
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+}
+
+
+
+
+/* Subtle highlight color for dark background */
+:root{
+  /* 하나만 선택해서 사용 */
+  --ink-subtle: rgba(255,213,79,.72);   /* 소프트 틸 (추천) */
+  /* --ink-subtle: rgba(183,214,242,.90);   미스트 블루 */
+  /* --ink-subtle: rgba(204,255,204,.85);   페일 민트 */
+  /* --ink-subtle: rgba(255,213,79,.72);    디밍 앰버 */
+}
+
+/* 적용 대상: 헤드라인 아래 설명 + 카드 캡션 */
+.lidar-hero-text p,
+.lidar-tiles .tile-copy{
+  color: var(--ink-subtle) !important;
+  font-weight: 600;
+  letter-spacing: .1px;
+}
+
+
+/* === Lidar tiles: 하단 공백 최적화 === */
+
+/* A) 텍스트 블록(제목+설명)을 카드의 '바닥'으로 내리기 */
+.lidar-tile{
+  display: flex;              /* 이미 있음: 재확인 차원 */
+  flex-direction: column;
+}
+.lidar-tile .tile-body{
+  margin-top: auto;           /* ← 이미지 아래 남는 공간을 위로 밀고, 텍스트를 아래로 */
+  padding-bottom: 10px;       /* 살짝만 여백(필요시 6~12px 사이로 조정) */
+}
+
+/* B) 카드 내부 하단 여백 자체를 더 줄이고 싶을 때 */
+.lidar-tiles{ margin: 14px 0 8px; } /* 섹션 하단 여백 8px로 컴팩트 */
+.lidar-tile .tile-body p{ margin-bottom: 6px; } /* 설명문 단락 여백 축소 */
+
+/* (옵션) 제목과 설명 간격도 약간만 조여서 전체 덩어리를 더 아래로 */
+.lidar-tile .tile-title{ margin-bottom: 6px; }
+
+ 
+
+
+.lidar-tile .tile-body{
+  text-align: center;
+}
+
+
+
+
+
+/* 적용 분야 풀폭 배너 */
+.lidar-apps-banner{
+  margin: 8px 0 26px;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 12px 30px rgba(0,0,0,.3);
+}
+.lidar-apps-banner img{ width:100%; height:auto; display:block; }
+.lidar-apps-banner figcaption{
+  padding:10px 12px; color:var(--ink-dim); font-size:.95rem;
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+}
+
+/* 반응형 */
+@media (max-width:1080px){
+  .lidar-tiles{ grid-template-columns: 1fr; }
+  .lidar-final{ gap:16px; }
+}
+
+
+
+
+.text-light-yellow {
+  color: #FFD54F !important;
+}
+
+
+
+
+
+/* LiDAR 중간 비디오 섹션 */
+.lidar-video {
+  background: #000;   /* 비디오 컬러와 자연스럽게 어울리는 블랙 */
+  padding: 28px 0;
+}
+
+.lidar-video-player {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;        /* 테두리 제거 */
+  border-radius: 0;    /* 직각 */
+  box-shadow: none;    /* 그림자 제거 */
+  background: #000;    /* 로딩 중에도 블랙 유지 */
+}
+
+/* 스크린리더 전용 */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+
+
+/* About Closing Contact 버튼 */
+.about-closing .about-contact-btn {
+  margin-top: 16px;
+  display: inline-block;
+  background: #E67E22;   /* 기본: 진한 오렌지 */
+  color: #fff;
+  font-weight: 800;
+  padding: 12px 28px;
+  border-radius: 9999px; /* 둥근 버튼 */
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+
+.about-closing .about-contact-btn:hover {
+  background: #FFB74D;   /* 호버: 밝은 오렌지 */
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+/* === About 마지막 배너: 위→아래 점점 진해지는 3톤 === */
+.about-closing h3{
+  margin: 0 0 12px;
+  font-weight: 800;
+  color: #FFD54F;  /* 밝은 앰버 톤 추천 */
+}
+
+
+
+/* === Footer: 거의 블랙 톤 === */
+#footer{
+  background: #020304 !important;      /* 거의 블랙 */
+  color: rgba(234,242,244,.72) !important;
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 24px 0;
+  text-align: center;
+}
+#footer a{ color:#FFB74D; }
+#footer p{ margin:6px 0; }
+
+
+
+
+
+
+
+  </style>
+</head>
+
+<body>
+  <!-- NAV (유지) -->
+  <div class="menu" aria-label="menu button"><span></span></div>
+  <nav id="nav" aria-label="primary navigation">
+    <ul class="main">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="welcome.html">Welcome</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="equipment.html">LiDAR Equipment</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="overlay"></div>
+
+  <!-- HERO (유지) -->
+  <header class="header banner">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <h1><a class="brand" href="index.html">D2N</a></h1>
+          <h1 class="page-title">About Us</h1>
+          <p class="tagline">공간정보 · LiDAR · GIS · 디지털트윈 전문 기업</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- ==================   DATA Part  ================== -->
+  <section id="data-business" aria-labelledby="db-ko-title">
+    <div class="container-wide">
+
+     <div class="section-header--center data-header">
+
+        <h2 class="kicker">DATA Part</h2>
+      </div> <br>
+
+      <div class="grid-2">
+        <!-- LEFT -->
+        <div class="left-stack">
+          <div>
+            <h2 id="db-ko-title" class="db-title">데이터 사업 부문</h2>
+            <h3 class="db-sub">Data structuring and analysis</h3>
+            <div class="divider"></div>
+          </div>
+
+          <div>
+            <p class="db-lead">
+              국내 최고 수준의 공간정보 전문가 참여로<br> <b>고객이 필요한 효율적 정보전달을 위해 최고 품질의 DB 구축 및 분석 자료를 제공합니다.</b>
+            </p>
+            <p class="db-copy">
+              실세계 좌표의 위치·형상정보에 기반한 정제된 DB 구축을 통해<br>
+              공간정보 기반의 정량 분석과 정책·인프라·도시계획·안전진단 등<br>
+              다양한 의사결정에 필요한 정보를 제공합니다.
+            </p>
+          </div>
+
+          <ul class="db-check">
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>전국 단위 공간정보 DB 구축 및 갱신</b></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>Raster/Vector 융합 데이터 생성·분석</b></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>데이터 통찰과 모델 설계로 맞춤형 데이터 생성 제공</b></li>
+          </ul>
+
+          <img src="img/about/process-diagram.jpg" alt="데이터 구축 프로세스" class="db-process">
+        </div>
+
+
+<!-- RIGHT: 상단 설명 → 대표 이미지 → 하단 설명 -->
+<div class="feature-panel" role="group" aria-label="데이터 대표 사례">
+  <div class="feature-top">
+    공간 형상 정보를 포함한 고차원 데이터 분석을 통해 
+    <b>현장 중심의 인사이트 파악·데이터베이스 모델 설계</b>를 제공합니다.  
+    드론 및 특수 임무 장비를 활용한 고정밀 데이터 수집을 병행하여, 
+    물리적 환경의 상세 현황과 특수 정보를 정밀하게 파악합니다.
+  </div>
+
+  <figure class="m-0">
+    <img class="feature-img" src="img/about/data-hero.jpg" alt="데이터 사업 대표 이미지">
+  </figure>
+
+  <div class="feature-bottom">
+    고객이 보유한 데이터와 신규 수집 데이터를 통합하여 
+    <b>운영 최적화를 위한 데이터베이스 구조 설계</b> 및 
+    <b>고도화된 데이터 마이닝</b>을 수행합니다.  
+    운영 환경에 대한 정밀 분석을 기반으로, 시계열 변화 탐지, 수요 및 위험도 예측, 
+    인프라 효율화 등 정책 수립과 전략적 의사결정에 직접 활용 가능한 분석 결과를 제공합니다.
+  </div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<!-- ================== SYSTEM Part ================== -->
+
+<section id="system-business" aria-labelledby="sys-ko-title">
+  <div class="container-wide">
+
+      <div class="section-header--center system-header">
+      <h2 class="kicker">SYSTEM Part</h2>
+    </div> <br>
+
+    <div class="grid-2">
+      <!-- LEFT -->
+       <div class="left-stack">
+          <div>
+            <h2 id="sys-ko-title" class="db-title">시스템 사업 부문</h2>
+            <h3 class="db-sub">System integration and GIS solutions</h3>
+            <div class="divider"></div>
+          </div>
+
+          <div>
+            <p class="db-lead">
+            지형·해양 및 다양한 지물을 대상으로 <b>위치·속성 기반 데이터와 GIS 기술</b>을 융합,  
+            2차원·3차원 기반의 고객 맞춤형 서비스와 <b>UX 설계</b>로 공간정보 시스템의 새로운 패러다임을 만들어갑니다.
+          </p>
+<p class="db-copy">
+  고객의 <b>Needs 분석</b>을 기반으로 맞춤형 공간정보 서비스를 제공합니다.<br>
+  오픈소스 중심의 SW 자원과 최신 2·3차원 GIS 기술을 활용하여 <br>
+  다양한 분야 및 수요 기관에서 필요로 하는 시스템을 구축하고, 보유 데이터의 활용성을 극대화하여
+  완벽한 의사결정 기초자료를 제공합니다.
+</p>
+          </div>
+
+<ul class="db-check">
+  <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>Needs 분석 기반 맞춤형 공간정보 시스템 구축</b></li>
+  <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>오픈소스 SW + 2·3차원 GIS 기술 융합 서비스 제공</b></li>
+  <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>공간정보 빅데이터 기반 분석·시각화 지원</b></li>
+          </ul>
+
+          <img src="img/about/system-diagram.jpg" alt="시스템 구축" class="db-process">
+        </div>
+
+
+
+<!-- RIGHT: 상단 설명 → 대표 이미지 → 하단 설명 -->
+<div class="feature-panel" role="group" aria-label="시스템 대표 사례">
+<div class="feature-top">
+  공간정보 시스템은 단순한 지도 서비스를 넘어 
+  <b>시설 관리와 빅데이터 분석까지 포괄하는 종합 솔루션</b>으로 발전하고 있습니다.  
+  이는 공공 분야의 행정 관리와 정책 결정은 물론, 
+  기업의 전략적 의사결정을 지원하는 핵심 도구로 활용되고 있습니다.
+</div>
+
+<figure class="m-0">
+  <img class="feature-img" src="img/about/system-hero.jpg" alt="시스템 사업 대표 이미지">
+</figure>
+
+<div class="feature-bottom">
+  또한 <b>오픈소스 기반의 SW와 최신 2·3·4차원 공간정보 기술</b>을 결합하여 
+  다양한 기관과 산업에서 요구하는 서비스를 안정적으로 제공합니다.  
+  당사는 공간정보 분야 최고의 전문 인력을 바탕으로, 
+  고객의 요구와 운영 환경에 최적화된 솔루션을 구축하여 
+  <b>신뢰할 수 있는 전문적이고 지속 가능한 서비스</b>를 제공합니다.
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+<!-- ================== PLATFORM Part (Full Hero) ================== -->
+<section id="platform-hero" class="platform-hero" aria-labelledby="platform-ko-title">
+  <div class="container-wide">
+    <div class="section-header--center platform-header">
+      <h2 class="kicker">PLATFORM Part</h2>
+    </div>
+    <br><br><br>
+    <h2 id="platform-ko-title" class="platform-title">
+      비즈니스 인허가 지도서비스 BMS  
+    </h2> <br>
+    <p class="platform-lead">
+      BMS는 D2N 플랫폼으로 구축된 대표적인 시스템 중 하나로,<br>
+      행정안전부가 제공하는 전국 단위 지방행정 인허가 현황을<br>
+      신뢰성 있게 가공·시각화하여 누구나 쉽게 활용할 수 있는 개방형 서비스 입니다.<br><br>
+      실시간 연계를 통해 개·폐업을 비롯한 주요 인허가 정보를 제공하여<br>
+      행정기관, 기업, 연구기관 등 다양한 분야에서<br>
+      전략적 의사결정과 정책 수립을 지원합니다.<br><br>
+<b class="text-light-yellow">보다 다양한 서비스 플랫폼은 D2N을 통해 확인하실 수 있습니다.</b>
+
+    </p>
+
+    <!-- 플랫폼 사이트로 이동 -->
+    <a href="https://bms.markmap.kr/" class="btn-cta" target="_blank" rel="noopener">사이트 바로가기</a>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- ================== DRONE Part (Hero + Cards) ================== -->
+<section id="drone-business" class="drone-hero" aria-labelledby="drone-ko-title">
+  <div class="container-wide">
+
+    <!-- Section header: DATA/SYSTEM과 동일 스타일 -->
+    <div class="section-header--center drone-header">
+      <h2 class="kicker">UAV Part</h2>
+    </div>
+
+    <!-- Main Title -->
+    <h2 id="drone-ko-title" class="drone-title">
+      더 현실적이고 과학적인 데이터 생산과<br>
+      신속하고 획기적인 정보 수집을 위해<br>
+      무인비행장치 서비스 분야에<br> 
+	  새로운 길을 만들어 갑니다.
+    </h2>
+
+
+    <!-- CTA 아래부분 위에서 숨김 주석처림 함 -->
+
+<a href="#" class="btn-cta" onclick="showMsg(); return false;">자료 준비중</a>
+<p id="drone-msg" style="display:none; color:#ff9800; font-weight:600; margin-top:10px;">
+  드론 소개자료는 준비 중입니다.
+</p>
+
+
+
+
+
+    <!-- Cards -->
+    <div id="drone-services" class="drone-grid">
+      <!-- 1 -->
+      <article class="drone-card">
+        <div class="thumb">
+          <img src="img/drone/drone-video.jpg" alt="영상 촬영 및 영상 구축">
+        </div>
+        <p class="eyebrow">고해상도 영상 취득</p>
+        <h3 class="title">영상 촬영 및 영상 구축</h3>
+      </article>
+
+      <!-- 2 -->
+      <article class="drone-card">
+        <div class="thumb">
+          <img src="img/drone/drone-lidar.jpg" alt="드론 라이다 관측">
+        </div>
+        <p class="eyebrow">고정밀 데이터 취득</p>
+        <h3 class="title">드론 라이다 관측</h3>
+      </article>
+
+      <!-- 3 -->
+      <article class="drone-card">
+        <div class="thumb">
+          <img src="img/drone/drone-processing.jpg" alt="관측 데이터 처리">
+        </div>
+        <p class="eyebrow">고품질 데이터 구축</p>
+        <h3 class="title">촬영 및 관측 데이터 처리</h3>
+      </article>
+
+      <!-- 4 -->
+      <article class="drone-card">
+        <div class="thumb">
+          <img src="img/drone/drone-mission.jpg" alt="특수 임무 비행 수행">
+        </div>
+        <p class="eyebrow">풍부한 UAV 운영 경험</p>
+        <h3 class="title">특수 임무 비행 수행</h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- ================== LiDAR Part ================== -->
+<section id="lidar-business" aria-labelledby="lidar-ko-title">
+  <div class="container-wide">
+
+    <!-- Section Header -->
+    <div class="section-header--center lidar-header">
+      <h2 class="kicker">LiDAR Part</h2>
+    </div>
+
+    <!-- Title & Lead -->
+    <h2 id="lidar-ko-title" class="db-title">라이다(LiDAR) 정밀 공간정보 서비스</h2>
+    <h3 class="db-sub">정밀 좌표 취득 · 고품질 지형 데이터 · 실무 적용 중심 분석</h3>
+    <div class="divider"></div>
+
+    <!-- Intro -->
+    <p class="db-lead">
+      드론 라이다(LiDAR) 기술은 <b>레이저 펄스를 이용해 지표면과 시설물의 정확한 3차원 좌표를 획득</b>하는 첨단 측량 방식입니다. <br>
+      드론 라이다, 차량 라이다, 핸드 라이다 등 다양한 플랫폼을 통해 적용이 가능하며 건설·국토 관리·환경 모니터링·수자원 조사·스마트시티 구축 등 여러 산업 분야에서 활용됩니다
+    </p> <br>
+
+    <!-- 2-Column Grid -->
+    <div class="grid-2">
+      <!-- LEFT : 핵심 가치 ①②③ -->
+      <div class="left-stack">
+        <div>
+          <h4 class="db-sub m-0">① 다양한 현장 적용 경험</h4>
+          <ul class="db-check">
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>드론·핸드헬드·차량 라이다를 활용한 다양한 지형·시설물 관측 경험</b></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>산악·도로·하천·해안 등 복잡 환경에서도 안정적 데이터 확보</li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>평면·입면·단면 등 다차원 데이터 제공으로 실무 분석 지원</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="db-sub">② 고품질 데이터 생성</h4>
+          <ul class="db-check">
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>고해상도 DEM 및 등고선 생성으로 정밀 지형 분석 가능</li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>라이다 원시 데이터(포인트 클라우드) 후처리를 통한 정량적이고 신뢰성 높은 공간정보 구축</b></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>정책 수립·도시계획·환경 모니터링 등 전문적 분석 활용에 최적화된 자료 제공</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="db-sub">③ 정밀 분석 및 활용 서비스</h4>
+          <ul class="db-check">
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>포인트 클라우드 기반 3차원 모델링 및 시뮬레이션</li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>토공량 계산, 수목 계측, 구조물 변위 및 변형 분석 등 고급 응용 서비스</li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i>환경 변화 분석, 시설물 안전 점검, 스마트시티 인프라 관리 등 다양한 산업 분야 적용</li>
+          </ul>
+        </div>
+
+        <p class="db-copy">
+          라이다 서비스는 <b>기존 측량 방식의 한계를 극복</b>한 차세대 솔루션입니다.
+          축적된 운용 경험과 처리 기술을 바탕으로 <b>프로젝트에 최적화된 데이터와 분석 결과</b>를 제공하여
+          다양한 산업 분야에서 <b>새로운 가치를 창출</b>합니다.
+        </p>
+      </div>
+
+      <!-- RIGHT : 사례 패널 -->
+      <div class="feature-panel" role="group" aria-label="LiDAR 대표 사례">
+  <div class="feature-top">
+    라이다(LiDAR) 기술은 단순한 데이터 취득을 넘어, 
+    <b>정밀 좌표 기반의 고해상도 공간정보 구축과 과학적 분석을 동시에 수행하는 통합 솔루션</b>입니다.
+  </div>
+
+        <figure class="m-0">
+          <img class="feature-img" src="img/lidar/lidar-hero.jpg" alt="LiDAR 서비스 대표 이미지">
+        </figure>
+
+  <div class="feature-bottom">
+   <b class="text-light-yellow"> 환경과 목적에 맞는 최적의 장비를 활용해 수집된 라이다 데이터를 융합 처리하여 실제 업무 현장에서 즉시 적용 가능한 신뢰성 높은 결과물을 제공합니다. </b>
+  </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ================== LiDAR Showcase Video ================== -->
+<section class="lidar-video" aria-labelledby="lidar-video-title">
+  <div class="container-wide">
+    <h2 id="lidar-video-title" class="sr-only">LiDAR Showcase Video</h2>
+    <video
+      class="lidar-video-player"
+      autoplay
+      muted
+      playsinline
+      loop
+      preload="metadata"
+      controls>
+      <source src="img/lidar/D2N_LiDAR.mp4" type="video/mp4">
+      브라우저가 동영상을 재생할 수 없습니다.
+    </video>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ================== LiDAR Part – Deep Black Sections (FINAL, refined) ================== -->
+<section id="lidar-deep" class="lidar-dark" aria-labelledby="lidar-deep-title">
+  <div class="container-wide">
+
+    <!-- 0) 섹션 타이틀 -->
+    <div class="section-header--center">
+      <h2 id="lidar-deep-title" class="lidar-dark-title">LiDAR 장비 & 적용 사례</h2>
+    </div>  <br>
+    
+    <!-- 1) 혁신 메시지 -->
+    <div class="lidar-final grid-2">
+      <figure class="final-left">
+        <img src="img/lidar/final-hero.jpg" alt="UAV LiDAR with Gimbal">
+      </figure>
+
+
+<div class="final-right">
+  <h3>혁신적인 공간정보 수집 솔루션</h3> 
+
+  <p>
+    현대 비즈니스 환경 속에서 <b>지속적인 혁신</b>은 기업 활동에 불가피한 필수 요소 중 하나입니다.
+  </p>
+  <p>
+    이에 디투엔(D2N)은 끊임없는 혁신을 통해 라이다(LiDAR) 산업 분야에 <b>새로운 가치를 창출</b>하고
+    고객들에게 <b>최상의 서비스</b>를 제공하고자 노력하고 있습니다.
+  </p>
+  <p>
+    우리는 <b>Geosun LiDAR</b> 제품을 필두로 <b>고객 중심의 접근</b>과
+    <b>혁신적인 아이디어</b>를 통해 변화하는 시장에서 성장하고
+    동시에 환경 변화에 대응하며 <b>지속 가능한 서비스 모델</b>을 구축하고 있습니다
+  </p>
+  <p>
+    저희와 함께 새로운 비즈니스 가능성을 모색하고
+    혁신의 길을 걸어가며 <br> 라이다(LiDAR) 기술이 가져다주는
+    <b>무한한 가능성</b>을 탐험해 보시기 바랍니다.
+  </p>  <br>
+
+  <p class="final-accent">
+    고객의 목표와 조건에 최적화된 플랫폼과 워크플로우로 프로젝트 성과를 극대화합니다.
+  </p>
+</div>
+
+
+
+
+    </div>   <p>
+
+    <!-- 2) Geosun 130G 전용 섹션 -->
+    <div class="section-header--center">
+    
+     <h2 class="lidar-flag-title">강력한 최적의 라이다 장비 소개</h2>
+    </div>
+
+    <div class="lidar-flagcard">
+ 
+      <h3 class="db-sub" style="color:#ccffcc; margin:0 0 6px;">프로젝트 효율과 TCO를 동시에 잡는 하이브리드 플랫폼</h3>
+
+      <div class="lidar-divider"></div>
+<p class="lidar-copy" 
+   style="color:var(--ink-dim); line-height:1.9; margin:0 0 12px; font-size:1.15rem;">
+  변화하는 현장에서도 <b>정확하고 재현성 높은 데이터</b>를 안정적으로 생산합니다. <br>
+  특히 <b>Geosun Handheld LiDAR</b>는 <b>지상 및 드론을 모두 운용</b>할 수 있는 유연한 플랫폼으로
+  프로젝트 운영의 <b>효율성</b>을 높이고 <b>비용</b>을 크게 절감하는 데 최적화되어 있습니다.
+</p>
+
+
+      <ul class="db-check">
+        <li><i class="fa fa-check-circle" aria-hidden="true"></i>지상 & 드론 <b>겸용 운용</b> — 현장 전환이 빠르고 장비 투자비 절감</li>
+        <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>높은 효율성 · 우수한 비용 경쟁력</b> — 인력/시간/장비비 최적 TCO</li>
+        <li><i class="fa fa-check-circle" aria-hidden="true"></i>다양한 환경에서 <b>안정적 정밀도</b>와 <b>고품질 포인트 클라우드</b></li>
+      </ul>
+
+      
+    </div>
+
+    <P> </p>
+
+    <!-- 3) 장비 패밀리 헤드라인 -->
+    <article class="lidar-hero-banner">
+      <figure>
+        <img src="img/lidar/hero-handheld-slam.jpg" alt="Handheld SLAM LiDAR Hero">
+      </figure>  <P> </p>
+      <div class="lidar-hero-text">
+        <h3>Handheld · Drone · Vehicle LiDAR</h3>
+        <p>업무 목적과 현장 환경에 최적화된 플랫폼을 선정하여 <b>최고 품질의 3차원 데이터</b>를 확보합니다.</p>
+      </div>
+    </article>
+
+    <!-- 4) 장비/플랫폼 3섹터 -->
+    <div class="lidar-tiles">
+      <article class="lidar-tile">
+        <img src="img/lidar/tile-handheld.jpg" alt="Handheld LiDAR">
+        <div class="tile-body">
+          <h4 class="tile-title">Handheld SLAM</h4>
+          <p class="tile-copy">실·내외 연속 보행 스캔으로 복잡 실내 구조와 협소 공간을 빠르게 취득.</p>
+        </div>
+      </article>
+      <article class="lidar-tile">
+        <img src="img/lidar/tile-drone.jpg" alt="Drone LiDAR">
+        <div class="tile-body">
+          <h4 class="tile-title">UAV LiDAR</h4>
+          <p class="tile-copy">산악·하천·해안선 등 접근이 어려운 지역의 고정밀 DEM/등고선 생성.</p>
+        </div>
+      </article>
+      <article class="lidar-tile">
+        <img src="img/lidar/tile-vehicle.jpg" alt="Vehicle LiDAR">
+        <div class="tile-body">
+          <h4 class="tile-title">Vehicle LiDAR</h4>
+          <p class="tile-copy">도로·전력선·도시기반시설 장거리 구간의 신속한 대면적 취득.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- 5) 장비 스펙 -->
+    <div class="lidar-specs grid-2">
+      <div class="specs-left">
+        <h3 class="specs-title">Representative Specs</h3>
+        <ul class="specs-list">
+          <li><b>정밀도</b> : 센티미터 레벨 (장비·조건별 ±1~5cm)</li>
+          <li><b>측정거리</b> : 120–300 m (장비 모델별 상이)</li>
+          <li><b>FOV</b> : 270° × 360°</li>
+          <li><b>센서 융합</b> : GNSS + INS + LiDAR + SLAM</li>
+          <li><b>미리보기</b> : 실시간 앱 뷰(프로젝트 관리)</li>
+        </ul>
+        <p class="specs-note">※ 상기 사양은 모델/환경에 따라 달라질 수 있으며, 프로젝트 요구사항에 맞춘 구성이 가능합니다.</p>
+      </div>
+      <figure class="specs-right">
+        <img src="img/lidar/specs-icons.jpg" alt="LiDAR Spec Icons">
+      </figure>
+    </div>
+
+    <!-- 6) 적용 분야 -->
+    <figure class="lidar-apps-banner">
+      <img src="img/lidar/apps-banner.jpg" alt="LiDAR Application Areas">
+<figcaption>
+  지형 측량 · 지하 주차장 조사 · 송전선 점검 · 디지털 모델링 · 적치량 측정 등 다양한 분야에 활용됩니다.
+</figcaption>
+    </figure>
+
+  </div>
+</section>
+
+
+
+<!-- ===== About 페이지 마무리 멘트 ===== -->
+<section class="about-closing" style="background:#0b0f13; color:#eaf2f4; padding:48px 0; text-align:center;">
+  <div class="container-wide">
+    <h3 style="margin:0 0 12px; font-weight:800; color:#fff;">함께 더 정확한 세상을 설계합니다.</h3>
+
+<p style="margin:0 0 24px; color:rgba(234,242,244,.78);">
+  D2N은 데이터와 시스템, 플랫폼, UAV, LiDAR 기술을 융합해<br>
+  신뢰할 수 있는 정보를 제공하고 더 나은 의사결정을 돕습니다.<br>
+  문의사항이 있으시면 언제든 저희에게 연락해 주시기 바랍니다! 감사합니다.
+</p>
+
+<!-- Contact Us 버튼 (공통 CTA 스타일 사용) -->
+<a href="contact.html" class="btn-cta">Contact Us</a>
+
+
+
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12"></div>
+      <div class="col-12">
+        <p>Copyright &#169; <a href="index.html">디투엔</a> All Rights Reserved.</p> <br>
+       <p style="font-size: 12px; color: #888;">Designed By <a href="https://htmlcodex.com" style="color: inherit; text-decoration: none;">HTML Codex</a></p>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa fa-arrow-up"></i></a>
+
+
+
+
+<script>
+  // 마우스나 터치로 클릭했을 때 버튼 포커스 해제
+  document.querySelectorAll('.btn-cta').forEach(btn => {
+    btn.addEventListener('mouseup', () => btn.blur());
+    btn.addEventListener('touchend', () => btn.blur(), {passive:true});
+  });
+</script>
+
+
+
+
+<script>
+function showMsg(){
+  document.getElementById("drone-msg").style.display="block";
+}
+</script>
+
+
+  <!-- Vendor JS -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Common JS -->
+  <script src="js/main.js"></script>
+
+
+
+
+</body>
+</html>

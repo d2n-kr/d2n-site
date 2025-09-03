@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Blog | D2N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
+
+  <!-- Vendor CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- 사이트 공통 CSS -->
+  <link href="css/hover-style.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+
+  <!-- Blog 전용 스타일 -->
+  <style>
+    :root {
+      --brand-orange: #E67E22;
+      --card-bg: #fff;
+      --card-border: #e9eef5;
+      --card-shadow: 0 8px 22px rgba(17,24,39,.06);
+      --muted: #6b7280;
+      --title: #111827;
+    }
+
+    /* ===== Hero ===== */
+    .c-blog .hero {
+      position: relative;
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(32px, 4vh, 56px) 20px;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
+        url('img/blog-hero.jpg') center/cover no-repeat;
+    }
+    .c-blog .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-shadow: 0 6px 16px rgba(0,0,0,.15);
+    }
+    .c-blog .hero p.sub {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: clamp(14px, 1.15vw, 18px);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, .92);
+      padding: 0 10px;
+    }
+
+    /* ===== Blog 목록 ===== */
+    .c-blog .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 18px 60px;
+    }
+    .c-blog .title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .c-blog .title h2 {
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: #333;
+      font-size: clamp(22px, 3vw, 32px);
+    }
+    .c-blog .title p {
+      margin: 0;
+      color: #666;
+      font-size: clamp(14px, 1.5vw, 18px);
+    }
+
+    /* ===== 카드 그리드 ===== */
+    .c-blog .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 1024px) {
+      .c-blog .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .c-blog .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .c-blog .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .c-blog .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(17,24,39,.12);
+    }
+    .c-blog .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--card-border);
+    }
+    @media (max-width: 480px) {
+      .c-blog .card img {
+        height: 180px;
+      }
+    }
+    .c-blog .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .c-blog .card-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--title);
+      margin: 0;
+    }
+    .c-blog .card-body p {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+
+
+.c-blog .card-body a {
+  margin-top: auto;
+  align-self: flex-start;
+  color: #fff;
+  background: #fba93a;   /* 밝은 오렌지 (기본) */
+  padding: 8px 16px;
+  border-radius: 999px;  /* pill 버튼 느낌 */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background .2s ease;
+}
+
+.c-blog .card-body a:hover {
+  background: #e67e22;   /* 진한 오렌지 (hover 시) */
+}
+
+
+
+
+    /* ===== 페이지네이션 ===== */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pagination a {
+      color: #555;
+      padding: 10px 18px;
+      text-decoration: none;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #fff;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+      min-width: 40px;
+      text-align: center;
+    }
+    .pagination a:hover {
+      background-color: var(--brand-orange);
+      color: #fff;
+      border-color: var(--brand-orange);
+    }
+    .pagination a.active {
+      background-color: var(--brand-orange);
+      color: white;
+      border: 1px solid var(--brand-orange);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 공통 헤더 -->
+  <div class="menu" aria-label="menu button"><span></span></div>
+  <nav id="nav" aria-label="primary navigation">
+    <ul class="main">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="welcome.html">Welcome</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="equipment.html">LiDAR Equipment</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li class="active"><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="overlay"></div>
+
+  <!-- 블로그 본문 -->
+  <main class="c-blog">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="container">
+        <h1>Blog</h1>
+        <p class="sub">D2N의 최신 소식과 프로젝트 진행 과정을 공유합니다.</p>
+      </div>
+    </header>
+
+    <!-- Blog 목록 -->
+    <section class="wrap">
+      <div class="title">
+        <h2>D2N Articles</h2>
+        <p>D2N의 소식, 기술 트렌드, 프로젝트 인사이트를 만나보세요.</p>
+      </div>
+
+      <!-- 블로그 카드 13~24 -->
+      <div class="grid">
+        <!-- 13 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P13.jpg" alt="Blog 13">
+          <div class="card-body">
+            <h3>[GIS 데이터 구축·분석] 공간 데이터를 활용한 도면 작성과 현황 분석</h3>
+            <p>다양한 공간 데이터를 기반으로 지도 작성과 현황 분석을 수행해 신뢰성 있는 분석과 의사결정을 지원</p>
+            <a href="https://blog.naver.com/d2ninc/223129059529" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 14 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P14.jpg" alt="Blog 14">
+          <div class="card-body">
+            <h3>[드론라이다와 사진측량] 실제 적용 사례 비교와 라이다 데이터 장단점</h3>
+            <p>드론 라이다와 사진측량의 실제 적용 사례를 비교해 차이점을 분석하고, 라이다 데이터의 장점과 한계를 소개</p>
+            <a href="https://blog.naver.com/d2ninc/223126497989" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 15 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P15.jpg" alt="Blog 15">
+          <div class="card-body">
+            <h3>[라이다와 사진측량] 사진 관측 및 라이다 관측정보의 기술 비교</h3>
+            <p>드론 라이다와 사진측량의 데이터 형식·수집 방식 차이를 분석하고, 적용 목적에 따른 활용 분야를 탐색</p>
+            <a href="https://blog.naver.com/d2ninc/223121283780" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 16 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P16.jpg" alt="Blog 16">
+          <div class="card-body">
+            <h3>[DB구축·분석] GIS 기반 공간정보 현황 조사 및 구역계 분석</h3>
+            <p>GIS를 활용해 공간정보를 수집·분석하여 기초현황조사와 구역계 현황분석을 수행하고, 의사결정과 관리에 활용</p>
+            <a href="https://blog.naver.com/d2ninc/223106844239" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 17 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P17.jpg" alt="Blog 17">
+          <div class="card-body">
+            <h3>[고분·왕릉] 드론 라이다 기반 고분군 관측 및 데이터 분석</h3>
+            <p>드론 라이다로 고분군의 지형 데이터를 정밀 수집·처리하여 문화재 연구와 보존을 위한 현황 분석에 활용</p>
+            <a href="https://blog.naver.com/d2ninc/223096920531" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 18 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P18.jpg" alt="Blog 18">
+          <div class="card-body">
+            <h3>[GIS DB] 드론 라이다 활용 지리·공간정보 기초자료 구축</h3>
+            <p>드론 라이다 센서를 통해 수집한 포인트 클라우드 데이터를 기반으로 지리·공간정보 DB를 구축하고 다양한 객체 모델링에 활용</p>
+            <a href="https://blog.naver.com/d2ninc/223083216760" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 19 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P19.jpg" alt="Blog 19">
+          <div class="card-body">
+            <h3>[급경사지·붕괴위험] 라이다 활용 지형 급경사 및 위험지역 분석</h3>
+            <p>라이다로 지형 고도를 정밀 측정해 급경사지와 붕괴 위험 지역을 신속하고 정확하게 파악</p>
+            <a href="https://blog.naver.com/d2ninc/223061452046" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 20 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P20.jpg" alt="Blog 20">
+          <div class="card-body">
+            <h3>[라이다 등고선] 드론 라이다 기반 등고선 구축 개요 및 사례</h3>
+            <p>드론 라이다를 활용해 지형 고도 데이터를 정밀 수집·처리하여 효율적이고 정확한 등고선 지도를 구축</p>
+            <a href="https://blog.naver.com/d2ninc/223055004327" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 21 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P21.jpg" alt="Blog 21">
+          <div class="card-body">
+            <h3>[체적·재적] 드론 라이다 활용 산림 및 수목 관측</h3>
+            <p>라이다 기반 산림 고해상도 3D 지형과 수목의 높이·재적 정보를 수집하여 산림 관리, 자원 관리, 재해 예방에 활용</p>
+            <a href="https://blog.naver.com/d2ninc/223054657119" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 22 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P22.jpg" alt="Blog 22">
+          <div class="card-body">
+            <h3>드론 라이다 관측을 통한 포인트클라우드 취득 및 데이터 처리</h3>
+            <p>라이다로 지역을 정밀 스캔해 포인트클라우드를 수집·처리하고, 재해예방·토지조사·설계 등 다양한 분야에 활용</p>
+            <a href="https://blog.naver.com/d2ninc/223032001786" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 23 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P23.jpg" alt="Blog 23">
+          <div class="card-body">
+            <h3>[Geosun LiDAR System] 스마트 비즈니스를 위한 라이다 솔루션</h3>
+            <p>비즈니스 생산성을 높이는 보다 저렴하고 높은 성능의 Geosun(거선) 라이다 솔루션</p>
+            <a href="https://d2n.inblog.io/geosun-lidar-system-%EC%8A%A4%EB%A7%88%ED%8A%B8-%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%9D%BC%EC%9D%B4%EB%8B%A4-%EC%86%94%EB%A3%A8%EC%85%98-13873" target="_blank">Read More</a>
+          </div>
+        </div>
+        <!-- 24 -->
+        <div class="card">
+          <img src="img/blog/D2Nblog-P24.jpg" alt="Blog 24">
+          <div class="card-body">
+            <h3>드론 라이다 국내 선두주자 "디투엔(D2N)</h3>
+            <p>2017년부터 드론 라이다 서비스를 준비해 안정적인 비행과 최고 수준의 데이터를 제공하는 국내 선두 기업</p>
+            <a href="https://blog.naver.com/d2ninc/223031639477" target="_blank">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <div class="pagination">
+        <a href="blog.html">1</a>
+        <a href="blog-page2.html" class="active">2</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12"></div>
+        <div class="col-12">
+          <p>Copyright &#169; <a href="index.html">디투엔</a> All Rights Reserved.</p>
+          <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Vendor JS -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery-migrate.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

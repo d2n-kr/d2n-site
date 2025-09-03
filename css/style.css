@@ -1,0 +1,2001 @@
+/* ================================================= */
+/* ------------------ General CSS ------------------ */
+/* ================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: #666;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    background: #ffffff;
+}
+
+a {
+    color: #E67E22;         /* 기본 = 로고 안쪽 주황 */
+    transition: 0.3s ease;
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: #DAA520;         /* hover = 톤다운된 골드 */
+    outline: none;
+    text-decoration: none;
+}
+
+
+p {
+    color: #666;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+    color: #666;
+    font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+    h2 {
+        font-size: 26px;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 575.98px) {
+    h2 {
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+
+/* ================================================= */
+/* ---------------- Burger Menu CSS ---------------- */
+/* ================================================= */
+
+.header {
+    display: table;
+    position: relative;
+     /* background-image: url(../img/header-bg.jpg);  */
+    background-size: cover;
+    padding: 100px 0;
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+}
+
+
+
+
+.header.banner {
+    height: 400px;
+    background-image: url(../img/banner.jpg);
+}
+
+.header:after {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.header .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.header .brand {
+    font-size: 60px;
+    font-weight: 800;
+    margin-bottom: 75px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.header .brand:hover {
+    color: #ffffff;
+}
+
+.header .brand:hover img {
+    opacity: .9;
+}
+
+.header h1 {
+    font-size: 45px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.header .tagline {
+    font-size: 26px;
+    line-height: 32px;
+    margin: 30px 0 60px 0;
+    color: #fff;
+}
+
+.header .btn {
+    background-color: #7DC576;
+    font-weight: 700;
+    color: #fff;
+    padding: 15px 45px;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+.header .btn:hover {
+    background-color: #222222;
+    color: #7DC576;
+}
+
+.header .btn:focus {
+    color: #fff;
+}
+
+.header .btn i {
+    margin-right: 5px;
+}
+
+ 
+/* ===== Hero(D to N) 중앙 정렬(한 화면 맞춤 + 우측 잘림 최소화) ===== */
+.header.hero-dtn{
+  position: relative;
+  min-height: 90vh;                         /* 100vh → 90vh : 한 화면에 여유 있게 들어오도록 */
+  padding: clamp(40px, 6vh, 72px) 20px;     /* 0 → 상하 여백 확보(화면 크기 반응형) */
+  display: flex;                             /* 헤더 자체도 flex */
+  align-items: center;                       /* 세로 중앙 */
+  justify-content: center;                   /* 가로 중앙 */
+  text-align: center;
+
+/* 
+  background:
+    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+    url('../img/header-bg.jpg') right center / cover no-repeat;  중심을 오른쪽으로 → 잘림 최소화  
+*/ 
+
+}
+
+/* 기존 .header .container {display: table-cell;} 무력화하고 중앙 정렬 유지 */
+.header.hero-dtn .container{
+  display: flex !important;      /* table-cell 덮어쓰기 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center !important;
+  z-index: 1;                    /* 오버레이 위로 */
+}
+
+/* row/col도 가운데로 */
+.header.hero-dtn .row{
+  width: 100%;
+  max-width: 960px;              /* 텍스트 폭이 너무 넓어지지 않게 */
+  margin: 0 auto;
+  justify-content: center;       /* 가로 정렬 */
+}
+.header.hero-dtn [class*="col-"]{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* 제목/본문 타이포: 좀 더 타이트하게(한 화면에 들어오도록) */
+.hero-dtn-title{
+  font-size: clamp(32px, 5.2vw, 58px);  /* 6vw, 72px → 5.2vw, 58px */
+  font-weight: 800;
+  line-height: 1.25;
+  color:#fff;
+  margin-bottom: 18px;                  /* 30px → 18px */
+  text-shadow: 0 3px 12px rgba(0,0,0,.5);
+}
+.hero-dtn-text{
+  font-size: clamp(13px, 1.05vw, 16px); /* 12–17px → 약간 줄임 */
+  line-height: 1.8;                     /* 1.85 → 1.8 */
+  color: rgba(255,255,255,.9);
+  margin-bottom: 10px;                  /* 18px → 10px */
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+/* ===== /Hero ===== */
+
+
+
+.popover-body .radio label {
+    margin-bottom: 0;
+}
+
+.popover-body button {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #7DC576;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+.popover-body button:hover {
+    color: #7DC576;
+    background: #222222;
+}
+
+.popover-body button i {
+    margin-right: 5px;
+}
+
+@media (max-width: 61.9em) {
+    .header {
+        padding: 75px 0;
+    }
+    
+    .header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .header.banner h1 {
+        font-size: 1.5rem;
+    }
+
+    .header .brand {
+        font-size: 3rem;
+        margin-bottom: 35px;
+    }
+
+    .header .tagline {
+        margin: 35px 0;
+        font-size: 22px;
+        line-height: 28px;
+    }
+}
+
+.menu {
+    width: 60px;
+    height: 50px;
+    position: fixed;
+    z-index: 2000;   /* ✅ 기본값 자체도 최상단 */
+    top: 1%;
+    right: 1%;
+    background: rgba(0,0,0,.3);
+    border-radius: 6px;
+}
+
+.menu span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 픽셀 마진 대신 중앙 고정 */
+     margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
++   -ms-user-select: none;
++    user-select: none;
+}
+
+.menu span, .menu span::before, .menu span::after {
+    display: block;
+    width: 26px;
+    right: 0;
+    height: 3px;
+    background-color: #fff;
+    outline: 1px solid transparent;
+    -webkit-transition-property: background-color, -webkit-transform;
+    -moz-transition-property: background-color, -moz-transform;
+    -o-transition-property: background-color, -o-transform;
+    transition-property: background-color, transform;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.menu span::before, 
+.menu span::after {
+    position: absolute;
+    content: "";
+}
+
+.menu span::before {
+    top: -9px;
+    width:20px
+}
+
+.menu span::after {
+    top: 9px;width: 33px;
+
+}
+
+.menu.clicked span {
+    background-color: transparent;
+}
+
+.menu.clicked span::before {
+    -webkit-transform: translateY(9px) rotate(45deg);
+    -moz-transform: translateY(9px) rotate(45deg);
+    -ms-transform: translateY(9px) rotate(45deg);
+    -o-transform: translateY(9px) rotate(45deg);
+    transform: translateY(9px) rotate(45deg);    
+    width: 33px;
+}
+
+.menu.clicked span::after {
+    -webkit-transform: translateY(-9px) rotate(-45deg);
+    -moz-transform: translateY(-9px) rotate(-45deg);
+    -ms-transform: translateY(-9px) rotate(-45deg);
+    -o-transform: translateY(-9px) rotate(-45deg);
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.menu.clicked span:before, .menu.clicked span:after {
+    background-color: #ffffff;
+}
+
+.menu:hover {
+    cursor: pointer;
+}
+
+#nav {
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    z-index: 1500;   /* ✅ 메뉴보다 낮게 조정 */
+    top: 0;
+    right: -260px; /* transform 실패 대비 백업 오프셋 */
+    height: 100%;
+    max-width: 250px;
+    width: 100%;
+    padding: 100px 40px 60px 40px;
+    overflow-y: auto;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+	pointer-events: auto; /* 명시(충돌 방지) */
+    -webkit-transition: transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-transition: transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-transition: transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+#nav.show {
+    right: 0; /* 표시 시 위치 확정 */
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+#nav.show ul.main li {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.menu.clicked {
+    position: fixed;
+    z-index: 2000; /* ✅ 최상단 */
+}
+
+#nav.show ul.main li:nth-child(1) {
+    transition-delay: 0.15s;
+}
+
+#nav.show ul.main li:nth-child(2) {
+    transition-delay: 0.3s;
+}
+
+#nav.show ul.main li:nth-child(3) {
+    transition-delay: 0.45s;
+}
+
+#nav.show ul.main li:nth-child(4) {
+    transition-delay: 0.6s;
+}
+
+#nav.show ul.main li:nth-child(5) {
+    transition-delay: 0.75s;
+}
+
+#nav.show ul.main li:nth-child(6) {
+    transition-delay: 0.9s;
+}
+
+#nav.show ul.main li:nth-child(7) {
+    transition-delay: 1.05s;
+}
+
+#nav.show ul.main li:nth-child(8) {
+    transition-delay: 1.2s;
+}
+
+#nav.show ul.main li:nth-child(9) {
+    transition-delay: 1.35s;
+}
+
+#nav.show .about, #nav.show .social, #nav.show ul.sub {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px);
+    opacity: 1;
+    transition-delay: .85s;
+}
+
+
+
+@media (min-width: 667px) {
+    #nav {
+        padding: 120px 30px 70px 20px;
+    }
+}
+
+#nav ul.main {
+    list-style-type: none;
+}
+
+#nav ul.main li {
+    -webkit-transform: translateX(40px);
+    -moz-transform: translateX(40px);
+    -ms-transform: translateX(40px);
+    -o-transform: translateX(40px);
+    transform: translateX(40px);
+    opacity: 0;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    float: none;
+    list-style: circle;
+    color: #fff
+}
+
+#nav ul.main li:last-of-type {
+    margin-bottom: 0px;
+}
+
+#nav ul.main li a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    display: block;
+    padding: 10px 0;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#nav ul.main li a span {
+    color: #7DC576;
+}
+
+#nav ul.main li a:hover {
+   color: #E67E22;   /* 밝은 주황 */
+}
+
+#nav ul.sub {
+    list-style-type: none;
+    margin-top: 40px;
+    -webkit-transform: translateY(30px);
+    -moz-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    -o-transform: translateY(30px);
+    transform: translateY(30px);
+    opacity: 0;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+#nav ul.sub li {
+    margin-bottom: 10px;
+}
+
+#nav ul.sub li:last-of-type {
+    margin-bottom: 0px;
+}
+
+#nav ul.sub li a {
+    color: #ffffff;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#nav ul.sub li a:hover {
+    color: #7DC576;
+}
+
+.menu:hover span{}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #603e82;
+    opacity: 0;
+    visibility: hidden;
+	pointer-events: none; /* ← 기본 차단 */
+}
+
+.overlay.show {
+    opacity: 0.8;
+    visibility: visible;
+	pointer-events: auto;           /* 보일 때만 클릭 허용 */
+}
+
+
+
+
+
+/* ================================================= */
+/* -------------- Section Header Style ------------- */
+/* ================================================= */
+
+.section-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.section-header::before {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 200px;
+    bottom: -10px;
+    left: calc(50% - 100px);
+    background: #666;
+}
+
+.section-header::after {
+    position: absolute;
+    content: '';
+    height: 14px;
+    width: 14px;
+    bottom: -17px;
+    left: calc(50% - 7px);
+    background: #666;
+    border-radius: 10px;
+}
+
+@media (max-width: 767.98px) {
+    .section-header h2 {
+        font-size: 35px;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .section-header h2 {
+        font-size: 25px;
+        font-weight: 600;
+    }
+}
+
+/* ================================================= */
+/* ------------------ About Style ------------------ */
+/* ================================================= */
+
+#about {
+    position: relative;
+    padding: 45px 0 60px 0;
+    background: #f2f2f2;
+}
+
+#about .img-col {
+    padding: 15px;
+    border: 20px dotted;
+    border-color: #7DC576 #3E6F39 #3E6F39 #7DC576;
+}
+
+#about .img-col .img {
+    padding: 15px;
+    border: 10px dotted;
+    border-color: #7DC576 #3E6F39 #3E6F39 #7DC576;
+}
+
+#about .img-col,
+#about .content-col {
+    position: relative;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+#about .img-col .box7 {
+    box-shadow: none;
+    border-radius: 6px;
+}
+
+
+#about .content-col h3 {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 767.98px) {
+    #about .content-col {
+        text-align: center;
+    }
+    
+    #about .content-col h3 {
+        margin-top: 15px;
+    }
+}
+
+#about .content-col p {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+#about .content-col a {
+    display: inline-block;
+    background-color: #7DC576;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+#about .content-col a:hover {
+    background-color: #222222;
+    color: #7DC576;
+}
+
+#about .content-col a:focus {
+    color: #fff;
+}
+
+/* ================================================= */
+/* ---------------- Portfolio Style ---------------- */
+/* ================================================= */
+
+#portfolio {
+    position: relative;
+    padding: 50px 0 60px 0;
+}
+
+.port-item {
+	overflow: hidden;
+	padding: 0px;
+}
+
+.port-item img{
+	height: 100%;
+	width: 100%;
+}
+
+.modal .modal-header button {
+    margin: 0 auto;
+    padding: 0px 8px 5px 8px;
+    font-size: 25px;
+    border-radius: 20px;
+    background: #7DC576;
+    color: #fff;
+}
+
+.modal .modal-body img {
+    height: 100%;
+    width: 100%;
+}
+
+.modal .modal-body h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.modal .modal-body .download-content {
+    font-size: 14px;
+}
+
+.custom-control-label:before{
+    background: #7DC576;
+    border: none;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before,
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background: #222222;
+    border: none;
+}
+
+.custom-radio .custom-control-input:focus~.custom-control-label::before,
+.custom-checkbox .custom-control-input:focus~.custom-control-label::before {
+    box-shadow: none;
+    border: none;
+}
+
+.modal .modal-body .download-content button {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #7DC576;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+.modal .modal-body .download-content button:hover {
+    color: #7DC576;
+    background: #222222;
+}
+
+.modal .modal-body .download-content button i {
+    margin-right: 5px;
+}
+
+.modal .port-slider-nav .slick-track {
+    padding: 30px 0 15px 0;
+}
+
+.modal .port-slider-nav .slick-center img {
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.box7:before {
+    background: rgba(000,000,000,.5);
+}
+
+.box7:after {
+    background: rgba(255,255,255,.5);
+    border: 2px solid #7DC576;
+}
+
+.box7 .post {
+    font-weight: normal;
+    font-style: normal;
+}
+
+.box7 .icon li a {
+    background: #7DC576;
+}
+
+/* ================================================= */
+/* ----------------- Classes Style ----------------- */
+/* ================================================= */
+
+#blog {
+    position: relative;
+    padding: 50px 0 30px 0;
+    background: #ffffff;
+}
+
+#blog .single-blog {
+    margin-bottom: 30px;
+}
+
+#blog .single-blog .col-sm-6:last-child {
+    padding: 15px;
+    margin-left: -15px;
+}
+
+@media (max-width: 575.98px) {
+    #blog .single-blog .col-sm-6:last-child {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+}
+
+#blog .blog-img,
+#blog .blog-des {
+    position: relative;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#blog .blog-img img {
+    width: 100%;
+}
+
+#blog .blog-img .box7 {
+    box-shadow: none;
+    border-radius: 6px;
+}
+
+#blog .blog-des {
+    width: 100%;
+    text-align: left;
+}
+
+#blog .blog-des h4 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+#blog .blog-des span {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#blog .blog-des span i {
+    margin-right: 3px;
+    margin-left: 10px;
+}
+
+#blog .blog-des span i:first-child {
+    margin-left: 0;
+}
+
+#blog .blog-des p {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* 블로그 Read More 버튼 색상(노랑 → 주황 호버) */
+#blog .blog-des .btn,
+.blog-grid-3 .btn.read{
+  background:#FFB74D;
+  color:#fff;
+  border-radius:999px;
+  padding:8px 18px;
+  font-weight:800;
+}
+#blog .blog-des .btn:hover,
+.blog-grid-3 .btn.read:hover{
+  background:#E67E22;
+  color:#FFF8E1;
+}
+
+
+/* ================================================= */
+/* ----------------- Booking Style ----------------- */
+/* ================================================= */
+#booking {
+    position: relative;
+    padding: 50px 0 60px 0;
+    background: #ffffff;
+}
+
+#booking .container {
+    max-width: 990px;
+}
+
+#booking .form-control {
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    line-height: 24px;
+    padding: 5px 20px;
+    background-color: transparent;
+    color: #222222;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+#booking .form-control:focus {
+    box-shadow: none;
+    outline: 0 none;
+}
+
+#booking .button button {
+    display: inline-block;
+    font-size: 16px;
+    color: #fff;
+    line-height: 24px;
+    padding: 10px 30px;
+    border-radius: 30px;
+    background: #7DC576;
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+#booking .button button:hover {
+    color: #7DC576;
+    background: #222222;
+}
+
+#booking .help-block ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* ================================================= */
+/* ---------------- Subscribe Style ---------------- */
+/* ================================================= */
+#subscribe {
+    position: relative;
+    text-align: center;
+    padding: 45px 0 60px 0;
+    background-color: #7DC576;
+    background-image: linear-gradient(#3E6F39, #7DC576);
+}
+
+#subscribe .section-header h2 {
+    color: #ffffff;
+}
+
+#subscribe .section-header::before,
+#subscribe .section-header::after {
+    background: #fff;
+}
+
+#subscribe .subscribe-form {
+    position: relative;
+    max-width: 525px;
+    width: 100%;
+    margin: auto;
+}
+
+#subscribe .subscribe-form input[type="email"] {
+    width: 100%;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    height: 50px;
+    line-height: 24px;
+    padding: 12px 30px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 16px; 
+}
+
+#subscribe .subscribe-form input[type="email"]:focus {
+    box-shadow: none;
+    outline: 0 none;
+}
+
+@media only screen and (max-width: 479px) {
+    #subscribe .subscribe-form input[type="email"] {
+        text-align: center; 
+    } 
+}
+
+input::-webkit-input-placeholder,
+input:-moz-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+input::-ms-input-placeholder { 
+    color: white; 
+}
+
+#subscribe .subscribe-form button {
+    font-size: 22px;
+    color: #7DC576;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 1px;
+    padding: 5px 30px 8px 30px;
+    margin-right: -1px;
+    border-radius: 30px;
+    background: #ffffff;
+    border: none;
+    font-weight: 700;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+#subscribe .subscribe-form button:hover {
+    color: #7DC576;
+    background: #222222;
+}
+
+#subscribe .subscribe-form button:focus {
+    box-shadow: none;
+    outline: 0 none;
+}
+
+
+@media only screen and (max-width: 479px) {
+    #subscribe .subscribe-form button {
+        position: static;
+        margin-top: 15px;
+        width: 100%; 
+    } 
+}
+
+/* ================================================= */
+/* ----------------- Call Us Style ----------------- */
+/* ================================================= */
+
+#call-us {
+    position: relative;
+    text-align: center;
+    padding: 45px 0 60px 0;
+    background-color: #7DC576;
+    background-image: linear-gradient(#3E6F39, #7DC576);
+}
+
+#call-us .section-header h2 {
+    color: #ffffff;
+}
+
+#call-us .section-header::before,
+#call-us .section-header::after {
+    background: #fff;
+}
+
+#call-us p {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+    letter-spacing: 1px;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
+#call-us a {
+    display: inline-block;
+    padding: 15px 45px;
+    background: #ffffff;
+    color: #7DC576;
+    font-size: 28px;
+    font-weight: 800;
+    border-radius: 50px;
+    letter-spacing: 1px;
+}
+
+#call-us a:hover {
+    color: #7DC576;
+    background: #222222;
+}
+
+/* ================================================= */
+/* ------------------ Contact Style ---------------- */
+/* ================================================= */
+
+#contact {
+    position: relative;
+    padding: 45px 0;
+}
+
+#contact .contact-info {
+    position: relative;
+}
+
+#contact .contact-info .info-item {
+    position: relative;
+    padding: 15px 50px;
+    margin-bottom: 15px;
+    background: #f2f2f2;
+    border-radius: 100px;
+}
+
+#contact .contact-info .info-item i {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#contact .contact-info .info-item h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#contact .contact-info .info-item p {
+    margin: 0;
+}
+
+#contact .contact-form {
+    position: relative;
+}
+
+#contact .contact-form input[type="text"],
+#contact .contact-form input[type="email"] {
+    height: 35px;
+    font-size: 16px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+#contact .contact-form textarea {
+    font-size: 16px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    textarea:focus,
+    input:focus {
+        font-size: 16px;
+        background: #fff;
+    }
+}
+
+#contact .contact-form button {
+    display: inline-block;
+    padding: 5px 30px 8px 30px;
+    background: #7DC576;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+#contact .contact-form button:hover {
+    color: #7DC576;
+    background: #222222;
+}
+
+#contact .help-block ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* ================================================= */
+/* ------------------- Login Style ----------------- */
+/* ================================================= */
+
+#login {
+    position: relative;
+    padding: 45px 0;
+}
+
+#login .login-form {
+    position: relative;
+}
+
+#login .login-form input[type="text"],
+#login .login-form input[type="email"],
+#login .login-form input[type="password"] {
+    height: 35px;
+    font-size: 16px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    input:focus {
+        font-size: 16px;
+        background: #fff;
+    }
+}
+
+#login .login-form button {
+    display: inline-block;
+    padding: 5px 30px 8px 30px;
+    background: #7DC576;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+#login .login-form button:hover {
+    color: #7DC576;
+    background: #222222;
+}
+
+/* ================================================= */
+/* ------------------ Footer Style ----------------- */
+/* ================================================= */
+
+#footer {
+    position: relative;
+    padding: 60px 0 50px 0;
+    text-align: center;
+    background: #222222;
+}
+
+#footer .social {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#footer .social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 4px 10px;
+    background: #7DC576;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+#footer .social a:hover {
+    background: #ffffff;
+    color: #7DC576;
+}
+
+#footer p {
+    margin: 0;
+    font-size: 18px;
+}
+
+
+
+
+
+/* ===== Business 섹션: 중앙 정렬 & 1열 ===== */
+.section-business{
+  background-color:#f8f9fa;
+  padding:35px 20px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;                 /* 섹션 자식 중앙축 통일 */
+}
+
+/* 헤더(로고/제목/설명) */
+.section-header{
+  width:min(100%, 800px);             /* 그리드와 동일 폭 */
+  margin:0 auto 48px;
+}
+.section-header img.biz-logo{
+  width:130px;
+  display:block;
+  margin:0 auto 16px;                 /* 로고 정확히 가운데 */
+}
+.section-header h2{
+  font-size:32px; font-weight:800; margin-bottom:8px;
+}
+
+
+/* 작은 설명 글 (desc) */
+.section-header .desc {
+  font-size: 16px;        /* 기존 16px → 18px */
+  font-weight: 600;       /* 글자 두껍게 */
+  color: #444;            /* 조금 더 진한 톤 */
+  margin-bottom: 16px;    /* 밑 간격 조정 */
+}
+
+/* 긴 설명 글 (sub-desc) */
+.section-header .sub-desc {
+  font-size: 17px;        /* 기존보다 살짝 키움 */
+  font-weight: 500;       /* 기본보다 굵게 */
+  line-height: 1.7;       /* 줄 간격 적당히 */
+  color: #555;            /* 눈에 부담 없는 진한 회색 */
+}
+
+
+
+/* 카드 그리드 */
+.biz-grid{
+  display:grid;
+  grid-template-columns:1fr;          /* 1열 고정 */
+  gap:32px;
+  width:min(100%, 800px);             /* 헤더와 동일 폭 */
+  margin:0 auto;
+}
+
+
+
+/* 카드 */
+.biz-item {
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  overflow:hidden;
+  text-decoration:none;   /* a 태그 밑줄 제거 */
+}
+
+/* 이미지 */
+.biz-item img {
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center;
+  border:0;
+  border-radius:8px;
+  transition:transform .25s ease, filter .25s ease;
+}
+.biz-item:hover img {
+  transform:scale(1.01);
+  filter:brightness(1.03);
+}
+
+/* 텍스트 */
+.biz-item h3 {
+  font-size:24px;
+  font-weight:800;
+  margin:24px 0 10px;
+  color:#E67E22;          /* 기본 주황 */
+  text-align:center;
+  transition:color .3s ease;
+}
+.biz-item p {
+  font-size:16px;
+  color:#ccc;             /* 설명 글씨는 고정 */
+  margin-bottom:20px;
+  text-align:center;
+}
+
+/* ✅ hover 시 h3(큰 제목)만 색상 변경 */
+.biz-item:hover h3 {
+  color:#DAA520;          /* 톤다운된 골드 */
+}
+
+
+
+/* 반응형(간격만 살짝) */
+@media (max-width:1024px){
+  .biz-grid{ gap:28px; }
+}
+@media (max-width:768px){
+  .section-header img.biz-logo{ width:110px; }
+  .section-header h2{ font-size:28px; }
+}
+
+
+
+
+
+/* Hero 내부 전용 다운로드 버튼 */
+.btn-download {
+  position: absolute;     /* Hero 안에서만 고정 */
+  top: 20px;              /* Hero 맨 위에서 20px */
+  left: 20px;             /* 왼쪽에서 20px (오른쪽에 두려면 right:20px;) */
+  z-index: 10;
+
+  background: #E67E22;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background .2s ease, transform .2s ease;
+}
+
+.btn-download:hover {
+  background: #DAA520;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+
+
+
+
+
+
+/* ===== Portfolio 섹션 ===== */
+
+/* 타이포: 비즈니스 섹션과 동일 */
+#portfolio .section-header h2 {
+  font-size: 32px;          /* .section-header h2와 동일 값 */
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+#portfolio .section-header .desc {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* ===== 포트폴리오 그리드 ===== */
+.port-grid {
+  row-gap: 24px;            /* 세로 간격 */
+}
+@media (min-width: 992px) {
+  .port-grid {
+    row-gap: 24px;
+  }
+}
+
+
+
+
+/* 카드 컨테이너 */
+.port-item .box7 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;     /* 기본 비율 유지 */
+  overflow: hidden;
+  border-radius: 0px;        /* ✅ 둥근 모서리 제거 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.port-item .box7:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+}
+
+/* 이미지 꽉 채우기 */
+.port-item .box7 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;   /* ✅ 둥근 모서리 제거 */
+}
+
+/* 데스크톱 기준 (3열 × 4행 = 12개)
+   뷰포트 높이에 맞춰 2줄 + 2줄이 화면 가득 차도록 계산 */
+@media (min-width: 1200px) {
+  .port-grid-viewport .port-item .box7 {
+    height: calc((100vh - 260px) / 2);  /* 헤더+타이틀 영역 빼고 반분 */
+    aspect-ratio: auto;                 /* 높이 기준으로 너비 자동 */
+  }
+}
+
+/* 오버레이 영역 */
+.port-item .box7 .box-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  color: #fff;
+  text-align: left;
+}
+
+.port-item .box7 .box-content .title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.port-item .box7 .box-content .post {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+
+
+/* === Portfolio action icons: 투명 → Hover 시 주황 배경 === */
+.box7 .icon li a {
+  background: transparent !important; /* 완전 투명 */
+  color: #fff !important;             /* 아이콘은 흰색 */
+  border: none !important;            /* 라인 제거 */
+  box-shadow: none !important;
+  transition: all .3s ease;
+}
+
+.box7 .icon li a:hover {
+  background: #E67E22 !important;  /* Hover 시 주황 배경 원 */
+  color: #fff !important;          /* 아이콘은 흰색 유지 */
+  border-radius: 50%;              /* 동그라미 형태 */
+}
+
+
+
+
+
+ 
+
+/* ==== Modal header: 닫기 버튼 (투명 주황 원형) ==== */
+#modal-id .modal-header { 
+  border-bottom: 0; 
+}
+#modal-id .modal-content { 
+  border: 0; 
+  border-radius: 8px; 
+}
+
+#modal-id .modal-header .close {
+  margin: 0 auto;
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;                      /* 원형 */
+  background: rgba(230, 126, 34, 0.3);     /* 연한 주황 (투명도 0.3) */
+  color: #fff;
+  opacity: 1;
+  text-align: center;
+  line-height: 36px;
+  text-shadow: none;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+#modal-id .modal-header .close:hover {
+  background: rgba(230, 126, 34, 0.9);     /* hover 시 진한 주황 */
+  color: #fff;
+}
+
+
+/* ======================= Slick 화살표 정리 ======================= */
+/* 1) 기본 before 아이콘 제거 */
+#modal-id .slick-prev::before,
+#modal-id .slick-next::before {
+  content: none !important;
+}
+
+/* 2) 버튼 기본 텍스트 숨김(Previous/Next 글자 문제 해결) */
+#modal-id .slick-prev,
+#modal-id .slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: transparent !important;      /* 불필요한 배경 제거 */
+  border: none;
+  font-size: 0;                            /* ← 텍스트 숨김 */
+  line-height: 0;
+  color: transparent;                      /* 안전장치 */
+  cursor: pointer;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent; /* 모바일 클릭 하이라이트 제거 */
+  transition: opacity .2s ease;
+}
+#modal-id .slick-prev { left: 12px; }
+#modal-id .slick-next { right: 12px; }
+
+/* 3) 아이콘은 after로 출력 (‹ ›) */
+#modal-id .slick-prev::after,
+
+
+#modal-id .slick-next::after {
+  display: inline-block;
+  line-height: 1;
+   color: rgba(255, 255, 255, 0.5);   /* 65% 불투명 → 기존보다 투명하게 */
+  font-size: 56px;                          /* 기존 40px → 크게 */
+  font-weight: 900;                         /* 두껍게 */
+  text-shadow: 0 0 8px rgba(0,0,0,0.1);     /* 진한 그림자 */
+  content: '›';                             /* 아이콘 모양 그대로 */
+}
+
+
+#modal-id .slick-prev::after { content: '‹'; }
+#modal-id .slick-next::after { content: '›'; }
+
+#modal-id .slick-prev:hover::after,
+#modal-id .slick-next:hover::after {
+  color: #E67E22;                          /* hover 시 주황 */
+}
+
+/* 4) 포커스/클릭 시 불필요한 타원 제거 */
+#modal-id .slick-prev:focus,
+#modal-id .slick-next:focus,
+#modal-id .slick-prev:active,
+#modal-id .slick-next:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+#modal-id .slick-prev:focus::after,
+#modal-id .slick-next:focus::after,
+#modal-id .slick-prev:active::after,
+#modal-id .slick-next:active::after {
+  box-shadow: none !important;
+}
+
+/* 5) 썸네일(nav) 슬라이더 화살표 숨김 */
+#modal-id .port-slider-nav .slick-prev,
+#modal-id .port-slider-nav .slick-next {
+  display: none !important;
+}
+
+/* ==== 썸네일 트랙 패딩 ==== */
+#modal-id .port-slider-nav .slick-track { 
+  padding: 18px 0 8px; 
+}
+
+
+
+
+
+
+
+
+/* Contact Section */
+
+.contact-section{
+   background: linear-gradient(to bottom, #ffb347, #ff6f3c) !important; /* 밝은 주황 → 진한 주황 */
+  padding: 72px 20px 84px;
+  color:#fff;
+  text-align: left; /* 전체 왼쪽 정렬 */
+  font-family: 'Open Sans', sans-serif;
+ }
+
+.contact-main-title{
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color:#fff;
+}
+
+.contact-title{
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 800;
+  margin: 0 0 12px;
+  color:#fff;
+}
+
+.contact-desc{
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 32px;
+  color:#fff;
+}
+
+/* 카드 그리드 왼쪽 정렬 */
+.contact-grid.left-align{
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* 왼쪽부터 배치 */
+}
+
+.contact-card{
+  background:#fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  padding: 24px 30px;
+  width: 350px;
+  display:flex;
+  align-items:center;
+}
+
+.contact-row{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+
+.contact-icon{
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex: 0 0 42px;
+}
+
+.contact-meta{
+  display:flex;
+  flex-direction:column;
+  gap: 4px;
+  align-items:flex-start;   /* 텍스트 전체를 왼쪽 정렬 */
+}
+
+/* 여기서 Email / Phone / Address만 사이즈 업 */
+.contact-label{
+  font-size: 22px;   /* 기존 18px → 22px */
+  font-weight: 800;  /* 더 굵게 */
+  color:#000;
+  text-align:left;
+}
+
+.contact-value{
+  font-size: 17px;
+  font-weight: 600;
+  color:#111;
+}
+
+
+
+
+
+
+/* =======================================================
+   BLOG STRIP — 3열 / 썸네일 좌, 텍스트 우 (최종본, 유동 썸네일)
+   ======================================================= */
+
+/* 섹션 컨테이너 폭 확장 (1920 기준 좌우 여백 최소화) */
+#blog.blog-strip .blog-wide{
+  max-width: 1680px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin: 0 auto;
+}
+
+/* 섹션 소제목 설명 */
+#blog.blog-strip .section-header .desc{
+  margin-top: 8px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* 3열 그리드 (PC) */
+#blog.blog-strip .blog-grid-3{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 32px;  /* row, col */
+}
+
+/* 카드: 좌(thumb) + 우(content)
+   ✨ 요 포인트! 썸네일 열을 유동폭으로 (뷰포트에 따라 함께 줄어듦)
+   - 최소 180px, 보통 22vw, 최대 320px 사이에서 반응형으로 결정 */
+#blog.blog-strip .blog-item{
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: clamp(140px, 14vw, 208px) 1fr;  /* 최소 140px, 보통 14vw, 최대 208px */
+  gap: 18px;
+  align-items: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+/* 썸네일: 정사각 1:1 */
+#blog.blog-strip .thumb{
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+#blog.blog-strip .thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  display: block;
+  transform: translateZ(0);
+}
+
+/* 텍스트 영역 */
+#blog.blog-strip .meta-wrap .title{
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  line-height: 1.25;
+  color: #333;
+}
+#blog.blog-strip .meta-wrap .title a{
+  color: inherit;
+  text-decoration: none;
+}
+#blog.blog-strip .meta-wrap .title a:hover{
+  color: #E67E22;
+}
+
+/* 메타: 날짜만 표기 */
+#blog.blog-strip .meta{
+  display: block;
+  margin-bottom: 8px;
+  color: #777;
+  font-size: 14px;
+  font-weight: 600;
+}
+#blog.blog-strip .meta .date i{ margin-right: 6px; }
+#blog.blog-strip .meta > :not(.date){ display: none !important; }
+
+/* 본문 요약 */
+#blog.blog-strip .excerpt{
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+/* Read more 버튼 (우하단 고정) */
+#blog.blog-strip .meta-wrap{
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* 제목 / 날짜 / 요약 / 버튼 */
+  height: 100%;
+}
+#blog.blog-strip .btn.read{
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #FFB347;   /* 연한 주황색 */
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .2px;
+  transition: background .2s ease, transform .2s ease;
+  justify-self: end;   /* 우측 정렬 */
+  align-self: end;     /* 하단 정렬 */
+}
+#blog.blog-strip .btn.read:hover{
+  background: #E67E22;   /* hover 시 진한 주황 */
+  color:  #FFF9C4;           /* ✅ hover 시에도 흰색 유지 */
+  transform: translateY(-1px);
+}
+
+/* 하단 CTA */
+#blog.blog-strip .blog-cta{ 
+  text-align: center; 
+  margin-top: 36px; 
+}
+#blog.blog-strip .btn-all{
+  display: inline-block;
+  background: #E67E22;
+  color: #fff;
+  font-weight: 800;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  transition: background .2s ease, transform .2s ease;
+}
+#blog.blog-strip .btn-all:hover{
+  background: #DAA520;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ==================
+   반응형
+   ================== */
+
+/* 태블릿(2열)에서도 썸네일이 함께 줄도록 비율만 살짝 조정 */
+@media (max-width: 1199.98px){
+  #blog.blog-strip .blog-grid-3{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* 2열에서는 썸네일을 조금 더 넓게(최대 300) */
+#blog.blog-strip .blog-item{
+    grid-template-columns: clamp(130px, 19vw, 195px) 1fr; /* 최소 130px, 보통 19vw, 최대 195px */
+  }
+}
+
+/* 모바일: 1열(상하 배치) */
+@media (max-width: 767.98px){
+  #blog.blog-strip .blog-grid-3{
+    grid-template-columns: 1fr;
+  }
+  #blog.blog-strip .blog-item{
+    grid-template-columns: 1fr;  /* 썸네일 위 / 텍스트 아래 */
+  }
+}
+
+
+
+
+
+
+
+/* ===============================
+   Back to Top Button (개선된 디자인)
+   =============================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(210, 210, 210, 0.5); /* 평소 연한 흰색 반투명 */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 48px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+/* 마우스 오버 시 */
+.back-to-top:hover {
+  background: #ff914d;  /* 연한 주황 */
+  color: #fff;
+}
+
+/* “Top” 텍스트 스타일 */
+.back-to-top::after {
+  content: "Top";   /* 혹은 "^" 로 변경 가능 */
+  font-size: 13px;
+  font-weight: 600;
+  color: inherit;
+}
+
+
+
+
+/* =========================
+   포트폴리오 상세 모달 최적화
+   ========================= */
+
+/* ① 모달 전체 크기 조정 */
+#portfolioModal .modal-dialog {
+  max-width: 1200px;      /* 모달 최대 너비 */
+  width: 90%;             /* 화면 대비 90% 사용 */
+  margin: 30px auto;      /* 위·아래 여백 확보 */
+}
+
+/* ② 모달 콘텐츠 */
+#portfolioModal .modal-content {
+  border-radius: 8px;     /* 모서리 둥글게 */
+  border: none;           /* 테두리 제거 */
+  padding: 0;
+  background-color: #fff; /* 배경색 고정 */
+}
+
+/* ③ 모달 헤더 */
+#portfolioModal .modal-header {
+  border: none;
+  padding: 0;             /* 헤더 자체 패딩 제거 */
+  position: relative;
+  height: 0;              /* 헤더 높이 줄여서 콘텐츠와 겹치지 않게 */
+}
+
+/* ④ 닫기 버튼 디자인 */
+#portfolioModal .modal-header .close {
+  position: absolute;
+  top: -16px;             /* 살짝 위로 올림 */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f5b88a;
+  color: #fff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  cursor: pointer;
+}
+
+/* ⑤ 모달 본문 이미지 최적화 */
+#portfolioModal .modal-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* ⑥ slick-prev / slick-next 버튼 위치 조정 */
+#portfolioModal .slick-prev,
+#portfolioModal .slick-next {
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1040;
+}
+
+/* ⑦ slick-prev 버튼 왼쪽 배치 */
+#portfolioModal .slick-prev {
+  left: 10px;
+}
+
+/* ⑧ slick-next 버튼 오른쪽 배치 */
+#portfolioModal .slick-next {
+  right: 10px;
+}
