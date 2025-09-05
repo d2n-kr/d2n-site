@@ -20,181 +20,122 @@
   <link href="css/hover-style.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
 
-  <!-- Blog 전용 스타일 -->
+
+
+
+ <!-- Blog 전용 스타일 -->
   <style>
-    :root {
-      --brand-orange: #E67E22;
-      --card-bg: #fff;
-      --card-border: #e9eef5;
-      --card-shadow: 0 8px 22px rgba(17,24,39,.06);
-      --muted: #6b7280;
-      --title: #111827;
-    }
-
-    /* ===== Hero ===== */
-    .c-blog .hero {
-      position: relative;
-      min-height: 40vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: clamp(32px, 4vh, 56px) 20px;
-      color: #fff;
-      background:
-        linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
-        url('img/blog-hero.jpg') center/cover no-repeat;
-    }
-    .c-blog .hero h1 {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 800;
-      margin-bottom: 10px;
-      text-shadow: 0 6px 16px rgba(0,0,0,.15);
-    }
-    .c-blog .hero p.sub {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: clamp(14px, 1.15vw, 18px);
-      line-height: 1.8;
-      color: rgba(255, 255, 255, .92);
-      padding: 0 10px;
-    }
-
-    /* ===== Blog 목록 ===== */
-    .c-blog .wrap {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 48px 18px 60px;
-    }
-    .c-blog .title {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-    .c-blog .title h2 {
-      font-weight: 800;
-      margin: 0 0 8px;
-      color: #333;
-      font-size: clamp(22px, 3vw, 32px);
-    }
-    .c-blog .title p {
-      margin: 0;
-      color: #666;
-      font-size: clamp(14px, 1.5vw, 18px);
-    }
-
-    /* ===== 카드 그리드 ===== */
-    .c-blog .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    @media (max-width: 1024px) {
-      .c-blog .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 768px) {
-      .c-blog .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .c-blog .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      box-shadow: var(--card-shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .c-blog .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px rgba(17,24,39,.12);
-    }
-    .c-blog .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-bottom: 1px solid var(--card-border);
-    }
-    @media (max-width: 480px) {
-      .c-blog .card img {
-        height: 180px;
-      }
-    }
-    .c-blog .card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .c-blog .card-body h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--title);
-      margin: 0;
-    }
-    .c-blog .card-body p {
-      color: var(--muted);
-      font-size: 15px;
-      margin: 0 0 12px;
-      line-height: 1.5;
-    }
+  
 
 
-.c-blog .card-body a {
-  margin-top: auto;
-  align-self: flex-start;
-  color: #fff;
-  background: #fba93a;   /* 밝은 오렌지 (기본) */
-  padding: 8px 16px;
-  border-radius: 999px;  /* pill 버튼 느낌 */
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: background .2s ease;
+  /* ========== Blog Page – Final Styles ========== */
+:root{
+  --brand-orange:#E67E22;
+  --card-bg:#fff;
+  --card-border:#e9eef5;
+  --card-shadow:0 8px 22px rgba(17,24,39,.06);
+  --muted:#6b7280;
+  --title:#111827;
 }
 
-.c-blog .card-body a:hover {
-  background: #e67e22;   /* 진한 오렌지 (hover 시) */
+/* ===== Hero (배경 1회만, D2N/타이틀/태그라인 포함) ===== */
+.c-blog .hero{
+  position:relative;
+  min-height:40vh;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+  padding:clamp(36px,6vh,72px) 20px;
+  color:#fff;
+  background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url('img/blog-hero.jpg') center/cover no-repeat;
 }
 
+/* D2N 브랜드 링크 */
+.c-blog .hero .brand{
+  color:#fff; font-weight:800; letter-spacing:1px;
+  text-decoration:none; transition:color .15s;
+  line-height:1.1; display:inline-block; margin-bottom:14px;
+}
+.c-blog .hero .brand:hover{ color:#E67E22; }
+
+/* 메인 타이틀 */
+.c-blog .hero .page-title{
+  margin:6px 0 8px;
+  font-size:clamp(28px,5vw,48px);
+  font-weight:800;
+  text-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+
+/* 태그라인(가독성↑, 반응형 1~2줄) */
+.c-blog .hero .tagline{
+  margin:0;
+  font-size:clamp(15px,2vw,19px);
+  line-height:1.6;
+  font-weight:500;
+  color:rgba(255,255,255,.92);
+  text-shadow:0 2px 6px rgba(0,0,0,.45);
+}
+.c-blog .hero .tagline .line1,
+.c-blog .hero .tagline .line2{ display:inline-block; margin:0; }
+.c-blog .hero .tagline .line2{ margin-left:8px; }
+@media (max-width:576px){
+  .c-blog .hero .tagline .line1,
+  .c-blog .hero .tagline .line2{ display:block; margin:0; }
+  .c-blog .hero .tagline .line2{ margin-left:0; }
+}
+
+/* ===== Blog 목록 공통 ===== */
+.c-blog .wrap{ max-width:1280px; margin:0 auto; padding:48px 18px 60px; }
+.c-blog .title{ text-align:center; margin-bottom:36px; }
+.c-blog .title h2{ font-weight:800; margin:0 0 8px; color:#333; font-size:clamp(22px,3vw,32px); }
+.c-blog .title p{ margin:0; color:#666; font-size:clamp(14px,1.5vw,18px); }
+
+/* 카드 그리드 */
+.c-blog .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+@media (max-width:1024px){ .c-blog .grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:768px){ .c-blog .grid{ grid-template-columns:1fr; } }
+
+.c-blog .card{
+  background:var(--card-bg); border:1px solid var(--card-border);
+  border-radius:16px; box-shadow:var(--card-shadow);
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:transform .25s, box-shadow .25s;
+}
+.c-blog .card:hover{ transform:translateY(-6px); box-shadow:0 12px 24px rgba(17,24,39,.12); }
+.c-blog .card img{ width:100%; height:220px; object-fit:cover; border-bottom:1px solid var(--card-border); }
+@media (max-width:480px){ .c-blog .card img{ height:180px; } }
+.c-blog .card-body{ padding:20px; display:flex; flex-direction:column; gap:8px; }
+.c-blog .card-body h3{ font-size:18px; font-weight:700; color:var(--title); margin:0; }
+.c-blog .card-body p{ color:var(--muted); font-size:15px; margin:0 0 12px; line-height:1.5; }
+.c-blog .card-body a{
+  margin-top:auto; align-self:flex-start; color:#fff; background:#fba93a;
+  padding:8px 16px; border-radius:999px; text-decoration:none; font-weight:600; font-size:14px;
+  transition:background .2s ease;
+}
+.c-blog .card-body a:hover{ background:#e67e22; }
+
+/* 페이지네이션 */
+.pagination{
+  display:flex; justify-content:center; margin-top:40px; gap:8px; flex-wrap:wrap;
+}
+.pagination a{
+  color:#555; padding:10px 18px; text-decoration:none;
+  border:1px solid #ddd; border-radius:6px; background:#fff; font-weight:600;
+  transition:all .2s; min-width:40px; text-align:center;
+}
+.pagination a:hover{ background:var(--brand-orange); color:#fff; border-color:var(--brand-orange); }
+.pagination a.active{ background:var(--brand-orange); color:#fff; border:1px solid var(--brand-orange); }
 
 
 
-    /* ===== 페이지네이션 ===== */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .pagination a {
-      color: #555;
-      padding: 10px 18px;
-      text-decoration: none;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background-color: #fff;
-      font-weight: 600;
-      transition: all 0.2s ease-in-out;
-      min-width: 40px;
-      text-align: center;
-    }
-    .pagination a:hover {
-      background-color: var(--brand-orange);
-      color: #fff;
-      border-color: var(--brand-orange);
-    }
-    .pagination a.active {
-      background-color: var(--brand-orange);
-      color: white;
-      border: 1px solid var(--brand-orange);
-    }
+
   </style>
+
+
+
+
+
 </head>
 
 <body>
@@ -216,13 +157,27 @@
 
   <!-- 블로그 본문 -->
   <main class="c-blog">
+
+
+
     <!-- Hero -->
-    <header class="hero">
-      <div class="container">
-        <h1>Blog</h1>
-        <p class="sub">D2N의 최신 소식과 프로젝트 진행 과정을 공유합니다.</p>
-      </div>
-    </header>
+
+<!-- Hero -->
+<header class="hero c-blog__hero">
+  <div class="container text-center">
+    <h1><a class="brand" href="index.html">D2N</a></h1>
+    <h1 class="page-title">Blog</h1>
+    <p class="tagline">
+      <span class="line1">D2N Articles & Works</span>
+      <span class="line2">공간정보·LiDAR·GIS 프로젝트</span>
+    </p>
+  </div>
+</header>
+
+
+
+
+
 
     <!-- Blog 목록 -->
     <section class="wrap">
@@ -351,18 +306,20 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <div id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-12"></div>
-        <div class="col-12">
-          <p>Copyright &#169; <a href="index.html">디투엔</a> All Rights Reserved.</p>
-          <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
-        </div>
+<!-- Footer -->
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12"></div>
+      <div class="col-12">
+        <p>Copyright &#169; <a href="index.html">디투엔</a> All Rights Reserved.</p> <br>
+       <p style="font-size: 12px; color: #888;">Designed By <a href="https://htmlcodex.com" style="color: inherit; text-decoration: none;">HTML Codex</a></p>
+
+
       </div>
     </div>
   </div>
+</div>
 
   <!-- Back to top -->
   <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa fa-arrow-up"></i></a>
