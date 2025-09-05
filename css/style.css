@@ -1840,20 +1840,22 @@ input::-ms-input-placeholder {
   text-align: center; 
   margin-top: 36px; 
 }
-#blog.blog-strip .btn-all{
-  display: inline-block;
-  background: #E67E22;
+
+
+#blog.blog-strip .btn-all {
+  background: #E67E22;   /* 기본: 현재 유지 */
   color: #fff;
   font-weight: 800;
   padding: 12px 28px;
   border-radius: 9999px;
   transition: background .2s ease, transform .2s ease;
 }
-#blog.blog-strip .btn-all:hover{
-  background: #DAA520;
+#blog.blog-strip .btn-all:hover {
+  background: #FF5722;   /* hover 시 강렬한 레드-오렌지 */
   color: #fff;
   transform: translateY(-2px);
 }
+
 
 /* ==================
    반응형
@@ -1998,4 +2000,233 @@ input::-ms-input-placeholder {
 /* ⑧ slick-next 버튼 오른쪽 배치 */
 #portfolioModal .slick-next {
   right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ===========================================================
+   MOBILE/TABLET FIX PATCH  (append to the end of style.css)
+   - Desktop 레이아웃/디자인 유지
+   - 모바일/태블릿에서만 오버라이드
+=========================================================== */
+
+/* 1) 공통 타이포/레이아웃 안정화 */
+@media (max-width: 768px){
+  html, body { overflow-x: hidden; }
+  body { word-break: keep-all; }                  /* 한글 단어 뭉개짐 방지 */
+  p   { line-height: 1.75; }                      /* 가독성 상승 */
+}
+
+/* 2) Hero(첫 화면) — 테이블 레이아웃 여파 제거 + 안전 여백 + 폰트 자동 축소 */
+@media (max-width: 768px){
+  .header.hero-dtn{
+    /* 100vh로 기기 주소창/툴바 문제 → 세로 오버플로우 방지 */
+    height: auto !important;
+    min-height: 88vh;
+    padding: 92px 16px 56px !important;          /* 상단 버튼/햄버거와 겹침 방지 */
+    display: flex !important;
+    align-items: center; justify-content: center;
+    text-align: center;
+    background:
+      linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+      url('../img/header-bg.jpg') right center / cover no-repeat; /* 기존 의도 유지 */
+  }
+  /* table-cell → flex 강제 */
+  .header.hero-dtn .container{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    width: 100%;
+    max-width: 560px;                             /* 과도한 줄바꿈 방지 (적정 행폭) */
+    text-align: center !important;
+  }
+  .header.hero-dtn .row{ max-width: 100%; margin: 0 auto; }
+  .header.hero-dtn [class*="col-"]{ text-align: center; }
+
+  /* 제목/본문 — 줄바꿈 폭주 방지 + <br> 숨김 */
+  .hero-dtn-title{
+    font-size: clamp(26px, 7vw, 38px) !important;
+    line-height: 1.22 !important;
+    margin-bottom: 12px !important;
+    letter-spacing: .2px;
+  }
+  .hero-dtn-title br{ display: none; }
+
+  .hero-dtn-text{
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+    margin-bottom: 8px !important;
+  }
+  .hero-dtn-text br{ display: none; }
+
+  /* 다운로드 버튼/메뉴 버튼 안전 위치 */
+  .btn-download{
+    top: 14px !important; left: 14px !important;
+    padding: 8px 14px !important; font-size: 13px !important;
+    z-index: 2001;
+  }
+  .menu{
+    top: 10px !important; right: 10px !important;
+    width: 50px; height: 44px;
+    z-index: 2002;
+  }
+  .menu span, .menu span::before, .menu span::after{ width: 24px; }
+  .menu span::before{ top:-8px; width:18px; }
+  .menu span::after{  top: 8px; width:30px; }
+}
+
+/* 3) “주요사업 영역” — 1열 그리드 + 타이틀 간격 보정 */
+@media (max-width: 768px){
+  .section-header{ margin-bottom: 36px !important; }
+  .section-header h2{
+    font-size: 26px !important; font-weight: 700 !important;
+  }
+  .section-header .desc{ font-size: 14px !important; }
+  .section-header .sub-desc{
+    font-size: 15px !important; line-height: 1.7; padding: 0 6px;
+  }
+
+  .section-business{ padding: 32px 16px !important; }
+  .biz-grid{
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 680px; margin: 0 auto;
+  }
+  .biz-item img{ height: auto !important; }
+  .biz-item h3{ font-size: 18px !important; margin: 14px 0 6px !important; }
+  .biz-item p{  font-size: 14px !important; margin-bottom: 14px !important; }
+}
+
+/* 4) Portfolio 카드 — 오버레이/아이콘 재배치 + 하단 공백 제거 (모바일 기준) */
+@media (max-width: 768px){
+  /* 카드 높이 과도/공백 문제 방지: 적정 높이 고정 */
+  .port-item .box7{ aspect-ratio: auto; height: 200px; }
+  .port-item .box7 img{ object-fit: cover; }
+
+  /* 텍스트: 좌하단 */
+  .port-item .box7 .box-content{
+    left: 10px; right: 10px; bottom: 10px;
+    padding: 8px 10px !important;
+    max-width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,.55));
+  }
+  .port-item .box7 .box-content .title{
+    font-size: 16px !important; margin: 0 0 2px !important;
+    white-space: normal; overflow: visible; text-overflow: clip;
+  }
+  .port-item .box7 .box-content .post{
+    font-size: 13px !important; line-height: 1.45;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  /* 아이콘: 좌상단 (작게) */
+  .box7 .icon{
+    top: 10px !important; left: 10px !important; bottom: auto !important;
+    gap: 6px;
+  }
+.box7 .icon .fa {
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+
+  /* 흰 배경에서도 선명하게 */
+  text-shadow: 0 0 3px rgba(0,0,0,.55), 
+               0 1px 6px rgba(0,0,0,.35);
+}
+
+  /* 과거 하단 패딩 보정 제거 */
+  .port-grid.port-grid-viewport .box7 .box-content{ padding-bottom: 8px !important; }
+}
+
+/* 5) 사이드 네비/오버레이 터치 이슈 보정 */
+@media (max-width: 768px){
+  #nav{ max-width: 78vw; }                 /* 화면 덮지 않고 슬라이드 폭 축소 */
+  .overlay{ background: rgba(0,0,0,.45); } /* 터치 배경 약간 어둡게 */
+}
+
+
+
+
+/* 모바일: <br> 보이게 (명시적으로 줄바꿈) */
+@media (max-width: 767.98px){
+  .hero-dtn-title{
+    white-space: normal !important;   /* 혹시라도 줄바꿈 방해 요소 방지 */
+    font-size: clamp(26px, 7vw, 38px);
+    line-height: 1.22;
+  }
+  .hero-dtn-title br{
+    display: inline !important;       /* 모바일에서 <br> 적용 */
+  }
+}
+
+
+
+
+
+
+
+/* ======================================
+   Contact Section — Mobile Typography Fix
+====================================== */
+@media (max-width: 767.98px){
+
+  /* Contact 소제목 */
+  .contact-main-title{
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* 큰 제목 */
+  .contact-title{
+    font-size: clamp(24px, 7vw, 30px) !important; /* 화면폭 따라 자동 조정 */
+    line-height: 1.3 !important;
+    margin-bottom: 14px !important;
+    text-align: center;
+  }
+
+  /* 본문 */
+  .contact-desc{
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    margin: 0 auto 20px !important;
+    max-width: 90%;                /* 너무 길어지지 않게 */
+    text-align: center;
+    word-break: keep-all;          /* 한글 단어 분리 방지 */
+  }
+}
+
+
+
+
+
+
+/* === Footer: 거의 블랙 톤 === */
+#footer {
+  background: #020304 !important;        /* 거의 블랙 */
+  color: rgba(234,242,244,.72) !important; /* 밝은 회색 글씨 */
+  border-top: 1px solid rgba(255,255,255,.06); /* 위쪽 가는 라인 */
+  padding: 24px 0;
+  text-align: center;
+}
+
+#footer a {
+  color: #FFB74D;   /* 링크는 따뜻한 주황 */
+  text-decoration: none;
+  transition: color .2s ease;
+}
+#footer a:hover {
+  color: #FFA726;   /* hover 시 조금 더 밝은 주황 */
+}
+
+#footer p {
+  margin: 6px 0;
 }
