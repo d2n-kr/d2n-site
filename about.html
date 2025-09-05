@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>About | D2N</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="utf-8">
+<title>사업소개 | 데이터 구축·시스템 개발·드론·플랫폼 — D2N</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Meta -->
+<meta name="keywords" content="디투엔, D2N, GIS, 공간정보, 데이터 구축, 시스템 개발, 드론, UAV, LiDAR, 플랫폼, 대시보드, 디지털트윈">
+<meta name="description" content="D2N의 사업영역 — 데이터 구축·정형화·분석, 2D·3D 지도 기반 시스템 개발, 드론·LiDAR 운영, 플랫폼 및 대시보드. 공간정보를 활용한 맞춤형 GIS 솔루션을 제공합니다.">
+<link rel="canonical" href="https://www.d2n.co.kr/about.html">
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -854,6 +860,62 @@
 
 
 
+/* About 배너 하단 문구 한 줄 + 글자 크기 확대 */
+.header.banner .tagline{
+  white-space: nowrap;
+  word-break: keep-all;
+  font-size: 18px;     /* ← 기본보다 크게 (원하는 크기로 조정 가능) */
+  font-weight: 600;    /* 조금 더 두껍게 */
+  letter-spacing: 0.5px; /* 글자 간격 살짝 */
+}
+
+/* 작은 화면에서는 자동 조정 */
+@media (max-width: 575.98px){
+  .header.banner .tagline{
+    font-size: 16px;   /* 모바일에서는 살짝 줄임 */
+  }
+}
+
+
+
+/* ===== PLATFORM 본문 정렬/가독성 (데스크탑 중앙 유지) ===== */
+
+/* 데스크탑: 오른쪽 스샷처럼 중앙 정렬 + 적당한 폭 */
+@media (min-width: 992px){
+  .platform-hero .platform-lead,
+  .platform-hero p{
+    text-align: center !important;
+    max-width: 900px;         /* 문단 폭 제한 */
+    margin: 0 auto 16px !important;
+    line-height: 1.8;
+  }
+}
+
+/* 태블릿/모바일: 줄간/폭만 조정, <br>는 숨겨 과도한 줄바꿈 방지 */
+@media (max-width: 991.98px){
+  .platform-hero .platform-lead,
+  .platform-hero p{
+    text-align: center !important;  /* 센터 유지 (원하면 left로 바꿔도 됨) */
+    font-size: 15.5px;
+    line-height: 1.75;
+    max-width: 92%;
+    margin: 0 auto 14px !important;
+    color: rgba(255,255,255,.92);
+  }
+  .platform-hero .platform-lead br,
+  .platform-hero p br{ display: none; }   /* 모바일에서 br 제거 */
+}
+
+@media (max-width: 767.98px){
+  .platform-lead .text-light-yellow {
+    display: block;       /* 줄 전체를 블록으로 만들어 강제 줄바꿈 */
+    margin-top: 8px;      /* 위쪽 여백 약간 */
+  }
+}
+
+
+
+
 
 
 
@@ -880,6 +942,8 @@
 
 
 
+.video-embed { aspect-ratio: 16 / 9; }
+.video-embed iframe { width: 100%; height: 100%; border: 0; }
 
 
 
@@ -941,8 +1005,8 @@
               국내 최고 수준의 공간정보 전문가 참여로<br> <b>고객이 필요한 효율적 정보전달을 위해 최고 품질의 DB 구축 및 분석 자료를 제공합니다.</b>
             </p>
             <p class="db-copy">
-              실세계 좌표의 위치·형상정보에 기반한 정제된 DB 구축을 통해<br>
-              공간정보 기반의 정량 분석과 정책·인프라·도시계획·안전진단 등<br>
+              실세계 좌표의 위치·형상정보에 기반한 정제된 DB 구축을 통해
+              공간정보 기반의 정량 분석과 도시계획·안전진단·정책수립 등 
               다양한 의사결정에 필요한 정보를 제공합니다.
             </p>
           </div>
@@ -959,24 +1023,25 @@
 
 <!-- RIGHT: 상단 설명 → 대표 이미지 → 하단 설명 -->
 <div class="feature-panel" role="group" aria-label="데이터 대표 사례">
-  <div class="feature-top">
-    공간 형상 정보를 포함한 고차원 데이터 분석을 통해 
-    <b>현장 중심의 인사이트 파악·데이터베이스 모델 설계</b>를 제공합니다.  
-    드론 및 특수 임무 장비를 활용한 고정밀 데이터 수집을 병행하여, 
-    물리적 환경의 상세 현황과 특수 정보를 정밀하게 파악합니다.
-  </div>
+<div class="feature-top">
+  공간 형상 정보를 포함한 고차원 데이터 분석을 통해  
+  <b>현장 중심의 인사이트 도출과 데이터베이스 모델 설계</b>를 지원합니다.  
+  또한 드론과 특수 임무 장비를 활용하여 고정밀 데이터를 수집하고,  
+  물리적 환경의 세부 현황과 특수 정보를 정확하게 파악합니다.
+</div>
 
-  <figure class="m-0">
-    <img class="feature-img" src="img/about/data-hero.jpg" alt="데이터 사업 대표 이미지">
-  </figure>
+<figure class="m-0">
+  <img class="feature-img" src="img/about/data-hero.jpg" alt="데이터 사업 대표 이미지">
+</figure>
 
-  <div class="feature-bottom">
-    고객이 보유한 데이터와 신규 수집 데이터를 통합하여 
-    <b>운영 최적화를 위한 데이터베이스 구조 설계</b> 및 
-    <b>고도화된 데이터 마이닝</b>을 수행합니다.  
-    운영 환경에 대한 정밀 분석을 기반으로, 시계열 변화 탐지, 수요 및 위험도 예측, 
-    인프라 효율화 등 정책 수립과 전략적 의사결정에 직접 활용 가능한 분석 결과를 제공합니다.
-  </div>
+<div class="feature-bottom">
+  수집된 데이터와 고객이 보유한 자료를 통합하여  
+  <b>운영 최적화에 적합한 데이터베이스 구조 설계</b>와  
+  <b>고도화된 데이터 마이닝</b>을 수행합니다.  
+  이를 통해 시계열 변화 탐지, 수요 및 위험 예측, 인프라 효율화 등  
+  정책 수립과 전략적 의사결정에 직접 활용할 수 있는 결과를 제공합니다.
+</div>
+
 </div>
 </div>
 </div>
@@ -1010,15 +1075,15 @@
           </p>
 <p class="db-copy">
   고객의 <b>Needs 분석</b>을 기반으로 맞춤형 공간정보 서비스를 제공합니다.<br>
-  오픈소스 중심의 SW 자원과 최신 2·3차원 GIS 기술을 활용하여 <br>
-  다양한 분야 및 수요 기관에서 필요로 하는 시스템을 구축하고, 보유 데이터의 활용성을 극대화하여
+  <b>오픈소스 중심의 소프트웨어 자원과 최신 2·3차원 GIS 기술을 활용하여  
+  다양한 분야 및 수요 기관에서 필요로 하는 시스템을 구축</b>하고, 보유 데이터의 활용성을 극대화하여
   완벽한 의사결정 기초자료를 제공합니다.
 </p>
           </div>
 
 <ul class="db-check">
   <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>Needs 분석 기반 맞춤형 공간정보 시스템 구축</b></li>
-  <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>오픈소스 SW + 2·3차원 GIS 기술 융합 서비스 제공</b></li>
+  <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>오픈소스SW + 2·3D GIS 기술 융합 서비스 제공</b></li>
   <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>공간정보 빅데이터 기반 분석·시각화 지원</b></li>
           </ul>
 
@@ -1032,7 +1097,7 @@
 <div class="feature-top">
   공간정보 시스템은 단순한 지도 서비스를 넘어 
   <b>시설 관리와 빅데이터 분석까지 포괄하는 종합 솔루션</b>으로 발전하고 있습니다.  
-  이는 공공 분야의 행정 관리와 정책 결정은 물론, 
+  이는 공공 분야의 행정 관리와 정책 결정은 물론
   기업의 전략적 의사결정을 지원하는 핵심 도구로 활용되고 있습니다.
 </div>
 
@@ -1074,7 +1139,11 @@
       실시간 연계를 통해 개·폐업을 비롯한 주요 인허가 정보를 제공하여<br>
       행정기관, 기업, 연구기관 등 다양한 분야에서<br>
       전략적 의사결정과 정책 수립을 지원합니다.<br><br>
-<b class="text-light-yellow">보다 다양한 서비스 플랫폼은 D2N을 통해 확인하실 수 있습니다.</b>
+<b class="text-light-yellow">
+  보다 다양한 서비스 플랫폼은<br>
+  D2N을 통해 확인하실 수 있습니다.
+</b>
+
 
     </p>
 
@@ -1175,8 +1244,8 @@
     </div>
 
     <!-- Title & Lead -->
-    <h2 id="lidar-ko-title" class="db-title">라이다(LiDAR) 정밀 공간정보 서비스</h2>
-    <h3 class="db-sub">정밀 좌표 취득 · 고품질 지형 데이터 · 실무 적용 중심 분석</h3>
+    <h2 id="lidar-ko-title" class="db-title">라이다 정밀 공간정보 서비스</h2>
+    <h3 class="db-sub">정밀좌표취득 · 고품질데이터 · 실무적용분석</h3>
     <div class="divider"></div>
 
     <!-- Intro -->
@@ -1246,24 +1315,28 @@
 
 
 
-<!-- ================== LiDAR Showcase Video ================== -->
+<!-- ================== LiDAR Showcase Video (YouTube Embed) ================== -->
 <section class="lidar-video" aria-labelledby="lidar-video-title">
   <div class="container-wide">
     <h2 id="lidar-video-title" class="sr-only">LiDAR Showcase Video</h2>
-    <video
-      class="lidar-video-player"
-      autoplay
-      muted
-      playsinline
-      loop
-      preload="metadata"
-      controls>
-      <source src="img/lidar/D2N_LiDAR.mp4" type="video/mp4">
-      브라우저가 동영상을 재생할 수 없습니다.
-    </video>
+
+    <!-- 기존 <video> 대신 iframe 임베드 -->
+    <div class="lidar-video-player video-embed">
+<iframe
+  src="https://www.youtube.com/embed/S1Ph_pZFOhQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&controls=1"
+  title="LiDAR Showcase Video"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+    </div>
+
+    <!-- 접근성/노스크립트 최소 대체 -->
+    <noscript>
+      <p><a href="https://youtu.be/S1Ph_pZFOhQ" target="_blank" rel="noopener">동영상을 보려면 여기를 클릭하세요</a></p>
+    </noscript>
   </div>
 </section>
-
 
 
 
@@ -1336,9 +1409,9 @@
 
 
       <ul class="db-check">
-        <li><i class="fa fa-check-circle" aria-hidden="true"></i>지상 & 드론 <b>겸용 운용</b> — 현장 전환이 빠르고 장비 투자비 절감</li>
-        <li><i class="fa fa-check-circle" aria-hidden="true"></i><b>높은 효율성 · 우수한 비용 경쟁력</b> — 인력/시간/장비비 최적 TCO</li>
-        <li><i class="fa fa-check-circle" aria-hidden="true"></i>다양한 환경에서 <b>안정적 정밀도</b>와 <b>고품질 포인트 클라우드</b></li>
+        <li><i class="fa fa-check-circle" aria-hidden="true"></i>지상 & 드론 겸용 장비 운용으로 현장 전환이 빠르고 장비 투자비 절감</li>
+        <li><i class="fa fa-check-circle" aria-hidden="true"></i>높은 효율성 · 우수한 비용 경쟁력에 따른 인력 / 시간 / 장비비 최적 TCO</li>
+        <li><i class="fa fa-check-circle" aria-hidden="true"></i>다양한 환경에서 안정적 정밀도와 고품질 포인트 클라우드 취득</li>
       </ul>
 
       
@@ -1363,21 +1436,21 @@
         <img src="img/lidar/tile-handheld.jpg" alt="Handheld LiDAR">
         <div class="tile-body">
           <h4 class="tile-title">Handheld SLAM</h4>
-          <p class="tile-copy">실·내외 연속 보행 스캔으로 복잡 실내 구조와 협소 공간을 빠르게 취득.</p>
+          <p class="tile-copy">실·내외 연속 보행 스캔으로 <br> 복잡 실내 구조와 협소 공간을 빠르게 취득.</p>
         </div>
       </article>
       <article class="lidar-tile">
         <img src="img/lidar/tile-drone.jpg" alt="Drone LiDAR">
         <div class="tile-body">
           <h4 class="tile-title">UAV LiDAR</h4>
-          <p class="tile-copy">산악·하천·해안선 등 접근이 어려운 지역의 고정밀 DEM/등고선 생성.</p>
+          <p class="tile-copy">산악·하천·해안선 등 <br>접근이 어려운 지역의 고정밀 DEM/등고선 생성.</p>
         </div>
       </article>
       <article class="lidar-tile">
         <img src="img/lidar/tile-vehicle.jpg" alt="Vehicle LiDAR">
         <div class="tile-body">
           <h4 class="tile-title">Vehicle LiDAR</h4>
-          <p class="tile-copy">도로·전력선·도시기반시설 장거리 구간의 신속한 대면적 취득.</p>
+          <p class="tile-copy">도로·전력선·도시기반시설 <br>장거리 구간의 신속한 대면적 취득.</p>
         </div>
       </article>
     </div>
@@ -1393,7 +1466,7 @@
           <li><b>센서 융합</b> : GNSS + INS + LiDAR + SLAM</li>
           <li><b>미리보기</b> : 실시간 앱 뷰(프로젝트 관리)</li>
         </ul>
-        <p class="specs-note">※ 상기 사양은 모델/환경에 따라 달라질 수 있으며, 프로젝트 요구사항에 맞춘 구성이 가능합니다.</p>
+        <p class="specs-note">※ 상기 사양은 모델/환경에 따라 달라질 수 있으며 프로젝트 요구사항에 맞춘 구성이 가능합니다.</p>
       </div>
       <figure class="specs-right">
         <img src="img/lidar/specs-icons.jpg" alt="LiDAR Spec Icons">
@@ -1420,8 +1493,8 @@
 
 <p style="margin:0 0 24px; color:rgba(234,242,244,.78);">
   D2N은 데이터와 시스템, 플랫폼, UAV, LiDAR 기술을 융합해<br>
-  신뢰할 수 있는 정보를 제공하고 더 나은 의사결정을 돕습니다.<br>
-  문의사항이 있으시면 언제든 저희에게 연락해 주시기 바랍니다! 감사합니다.
+  신뢰할 수 있는 정보를 제공하고 <br> 더 나은 의사결정을 돕습니다.<br><br>
+  문의사항이 있으시면 언제든 저희에게<br>연락해 주시기 바랍니다! <br> 감사합니다.
 </p>
 
 <!-- Contact Us 버튼 (공통 CTA 스타일 사용) -->
