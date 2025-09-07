@@ -1067,15 +1067,23 @@ input::-ms-input-placeholder {
     margin-bottom: 30px;
 }
 
-/* 기존: #call-us a { ... }  ← 모든 링크에 적용됨 */
-#call-us a { /* 이 블록을 지우고 */ }
+/* 전화번호 링크 리셋(알약 버튼 스타일 무효화) */
+#call-us .contact-card .contact-meta .contact-value a.tel{
+  display:inline !important;
+  padding:0 !important;
+  background:transparent !important;
+  color:inherit !important;
+  font-size:inherit !important;
+  font-weight:600;
+  border-radius:0 !important;
+  letter-spacing:0 !important;
+  text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
+  overflow-wrap:anywhere; word-break:break-word;
+}
 
-
-
-
-/* 변경: 버튼에만 적용되도록 클래스로 한정 */
-#call-us .btn,
-#call-us a.btn {
+/* (선택) 일반 링크는 기존 버튼 스타일 유지하고 싶다면 */
+#call-us a.btn{
   display:inline-block;
   padding:15px 45px;
   background:#ffffff;
@@ -1086,10 +1094,8 @@ input::-ms-input-placeholder {
   letter-spacing:1px;
 }
 
-#call-us a:hover {
-    color: #7DC576;
-    background: #222222;
-}
+
+
 
 /* ================================================= */
 /* ------------------ Contact Style ---------------- */
@@ -2238,5 +2244,6 @@ input::-ms-input-placeholder {
 #footer p {
   margin: 6px 0;
 }
+
 
 
