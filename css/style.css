@@ -2219,6 +2219,25 @@ input::-ms-input-placeholder {
 }
 
 
+ @media (max-width: 767.98px){
+  .biz-item{
+    display:block;
+    width:93%;            /* ← 여기서 여백 확보 */
+    max-width:360px;      /* 너무 넓어지지 않게 가드 */
+    margin:0 auto 14px;   /* 가운데 정렬 + 카드 간격 */
+    border-radius:12px;
+    overflow:hidden;
+    background:#111;      /* 흰 배경 유지 */
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+  }
+
+  .biz-item > img{
+    width:100%;
+    height:200px;         /* 이미지 높이 조정 */
+    object-fit:cover;
+    display:block;
+  }
+}
 
 
 
@@ -2244,6 +2263,7 @@ input::-ms-input-placeholder {
 #footer p {
   margin: 6px 0;
 }
+
 
 
 
