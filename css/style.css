@@ -1076,7 +1076,7 @@ input::-ms-input-placeholder {
   font-size:inherit !important;
   font-weight:600;
   border-radius:0 !important;
-  letter-spacing:0 !important;
+  letter-spacing:2px !important;
   text-decoration:none;
   -webkit-tap-highlight-color:transparent;
   overflow-wrap:anywhere; word-break:break-word;
@@ -2244,6 +2244,7 @@ input::-ms-input-placeholder {
 #footer p {
   margin: 6px 0;
 }
+
 
 
 
