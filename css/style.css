@@ -1067,15 +1067,18 @@ input::-ms-input-placeholder {
     margin-bottom: 30px;
 }
 
-#call-us a {
-    display: inline-block;
-    padding: 15px 45px;
-    background: #ffffff;
-    color: #7DC576;
-    font-size: 28px;
-    font-weight: 800;
-    border-radius: 50px;
-    letter-spacing: 1px;
+
+/* 변경: 버튼에만 적용되도록 클래스로 한정 */
+#call-us .btn,
+#call-us a.btn {
+  display:inline-block;
+  padding:15px 45px;
+  background:#ffffff;
+  color:#7DC576;
+  font-size:28px;
+  font-weight:800;
+  border-radius:50px;
+  letter-spacing:1px;
 }
 
 #call-us a:hover {
@@ -2230,3 +2233,4 @@ input::-ms-input-placeholder {
 #footer p {
   margin: 6px 0;
 }
+
