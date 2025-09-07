@@ -893,62 +893,13 @@
 
 
 
-	  
-/* =========================================
-   PLATFORM hero — tablet/mobile (<= 991.98px)
-   ========================================= */
-@media (max-width: 991.98px){
-
-  /* 본문 문단 공통: 폭/줄간/색상 */
-  .platform-hero .platform-lead,
-  .platform-hero p{
-    text-align: center !important;
-    font-size: 15.5px;
-    line-height: 1.75;
-    max-width: 92%;
-    margin: 0 auto 14px !important;
-    color: rgba(255,255,255,.92);
-  }
-
-  /* 기본: 과도한 줄바꿈 방지 위해 br 숨김 */
-  .platform-hero .platform-lead br{
-    display: none;
-  }
-
-  /* 예외: 노란 강조문 안의 br만 표시 */
-  .platform-hero .platform-lead b.text-light-yellow br{
-    display: inline;
-  }
-
-  /* 노란 강조문은 블록으로 떨어뜨려 가독성 확보 */
-  .platform-hero .platform-lead b.text-light-yellow{
-    display: block;
-    margin-top: 8px;
-    line-height: 1.6;
-  }
-
-  /* 한글 줄나눔 자연스럽게 */
-  .platform-hero .platform-lead{
-    white-space: normal;
-    word-break: keep-all;
-  }
-}
-
-/* (옵션) 아주 작은 화면(<= 767.98px)에서 살짝 더 여유 */
-@media (max-width: 767.98px){
-  .platform-hero .platform-lead{ font-size: 15px; }
-}
-
-
-
-	  
-
 @media (max-width: 767.98px){
   .platform-lead .text-light-yellow {
     display: block;       /* 줄 전체를 블록으로 만들어 강제 줄바꿈 */
     margin-top: 8px;      /* 위쪽 여백 약간 */
   }
 }
+
 
 
 
@@ -1602,5 +1553,4 @@ function showMsg(){
 
 </body>
 </html>
-
 
