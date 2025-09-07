@@ -1067,6 +1067,11 @@ input::-ms-input-placeholder {
     margin-bottom: 30px;
 }
 
+/* 기존: #call-us a { ... }  ← 모든 링크에 적용됨 */
+#call-us a { /* 이 블록을 지우고 */ }
+
+
+
 
 /* 변경: 버튼에만 적용되도록 클래스로 한정 */
 #call-us .btn,
@@ -2233,4 +2238,5 @@ input::-ms-input-placeholder {
 #footer p {
   margin: 6px 0;
 }
+
 
