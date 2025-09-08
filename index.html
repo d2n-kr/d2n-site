@@ -6,31 +6,53 @@
   <title>디투엔(D2N) | 공간정보·라이다·드론·GIS 솔루션</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- 기본 메타 -->
-  <meta name="keywords" content="디투엔, D2N, GIS, 공간정보, 드론, 라이다, LiDAR, DB 구축, 공간 데이터 분석, 지도 서비스, 디지털트윈">
-  <meta name="description" content="디투엔(D2N)은 공간정보(GIS) DB 구축·분석, 맞춤형 지도 서비스, 드론·LiDAR 관측 및 장비 판매, 3D 디지털트윈 플랫폼 개발을 수행하는 공간정보 전문 기업입니다.">
+  <!-- Indexing -->
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
   <link rel="canonical" href="https://www.d2n.co.kr/">
+  <link rel="alternate" hreflang="ko-KR" href="https://www.d2n.co.kr/">
 
-  <!-- Favicons -->
+  <!-- Basic Meta -->
+  <meta name="keywords" content="디투엔, D2N, GIS, 공간정보, 드론, 라이다, LiDAR, DB 구축, 공간 데이터 분석, 지도 서비스, 디지털트윈, geosun, 거선 라이다">
+  <meta name="description" content="디투엔(D2N)은 공간정보(GIS) DB 구축·분석, 맞춤형 지도 서비스, 드론·LiDAR 관측 및 장비 판매, 3D 디지털트윈 플랫폼 개발을 수행하는 공간정보 전문 기업입니다.">
+  <meta name="author" content="D2N">
+
+
+  <!-- Site Verification -->
+  <meta name="google-site-verification" content="Q3yO_yUWbk56KoaSNXyvYn40vZMnhTCDaN1Co3304T0">
+  <meta name="naver-site-verification" content="">
+
+  <!-- Favicons / Theme -->
   <link href="img/favicon.png" rel="icon">
   <link href="img/favicon.png" rel="apple-touch-icon">
+  <meta name="theme-color" content="#0b4bf2">
 
-  <!-- Open Graph / Facebook / 카카오톡 -->
+  <!-- Open Graph -->
+  <meta property="og:locale" content="ko_KR">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="디투엔(D2N)">
   <meta property="og:title" content="디투엔 | 공간정보·라이다·드론·GIS 솔루션">
-  <meta property="og:description" content="GIS DB 구축·분석, 맞춤형 지도 서비스, 드론·LiDAR 관측 및 장비 판매, 3D 디지털트윈 플랫폼 개발 전문 기업">
+  <meta property="og:description" content="GIS DB 구축·분석, 맞춤형 지도 서비스, 드론·LiDAR 관측 및 장비 판매, 2D·3D 플랫폼 개발 전문 기업">
   <meta property="og:url" content="https://www.d2n.co.kr/">
-  <meta property="og:image" content="https://www.d2n.co.kr/img/og-image.jpg"><!-- 1200x630 권장 -->
+  <meta property="og:image" content="https://www.d2n.co.kr/img/og-image.jpg?v=20250907">
+  <meta property="og:image:secure_url" content="https://www.d2n.co.kr/img/og-image.jpg?v=20250907">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="디투엔 대표 이미지">
+
+  <!-- 필요 시 2:1 이미지 추가
+  <meta property="og:image" content="https://www.d2n.co.kr/img/og-image-1200x600.jpg?v=20250907">
+  -->
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="디투엔 | 공간정보·라이다·드론·GIS 솔루션">
   <meta name="twitter:description" content="GIS DB 구축·분석, 지도 서비스, 드론·LiDAR 관측/장비">
-  <meta name="twitter:image" content="https://www.d2n.co.kr/img/og-image.jpg">
+  <meta name="twitter:image" content="https://www.d2n.co.kr/img/og-image.jpg?v=20250907">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <!-- Fonts (preconnect + swap) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +65,7 @@
   <link href="css/hover-style.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
-  <!-- 페이지 보조 스타일 (기존 디자인 유지하며 최소 오버라이드) -->
+  <!-- Inline styles (필요 최소만 유지) -->
   <style>
     .brand{letter-spacing:.5px}
     .btn-pill{border-radius:999px;padding:.55rem 1.05rem}
@@ -55,55 +77,51 @@
     @media (max-width:576px){ .btn + .btn{margin-top:.5rem} }
   </style>
 
-  <!-- JSON-LD 구조화 데이터: WebSite -->
+  <!-- Structured Data (Organization + WebSite) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "디투엔(D2N)",
-    "url": "https://www.d2n.co.kr/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.d2n.co.kr/search/?q={query}",
-      "query-input": "required name=query"
-    }
-  }
-  </script>
-
-  <!-- JSON-LD 구조화 데이터: Organization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "디투엔(D2N)",
-    "url": "https://www.d2n.co.kr/",
-    "logo": "https://www.d2n.co.kr/img/favicon.png",
-    "email": "mailto:d2n@d2n.co.kr",
-    "telephone": "+82-53-522-0320",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "동북로75길 13, 상가 401호",
-      "addressLocality": "동구",
-      "addressRegion": "대구광역시",
-      "postalCode": "41181",
-      "addressCountry": "KR"
-    },
-    "sameAs": [
-      "https://blog.naver.com/d2ninc"
-    ],
-    "contactPoint": [{
-      "@type": "ContactPoint",
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "디투엔(D2N)",
+      "url": "https://www.d2n.co.kr/",
+      "logo": "https://www.d2n.co.kr/img/favicon.png",
+      "email": "mailto:d2n@d2n.co.kr",
       "telephone": "+82-53-522-0320",
-      "contactType": "customer service",
-      "areaServed": "KR",
-      "availableLanguage": ["Korean"]
-    }]
-  }
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "동구",
+        "addressRegion": "대구광역시",
+        "postalCode": "41181",
+        "addressCountry": "KR"
+      },
+      "sameAs": [
+        "https://blog.naver.com/d2ninc",
+        "https://www.linkedin.com/",
+        "https://x.com/"
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+82-53-522-0320",
+        "contactType": "customer service",
+        "areaServed": "KR",
+        "availableLanguage": ["Korean"]
+      }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://www.d2n.co.kr/",
+      "name": "디투엔(D2N)",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.d2n.co.kr/search/?q={query}",
+        "query-input": "required name=query"
+      }
+    }
+  ]
   </script>
 </head>
-
-
-
 
   <body>
 
@@ -871,6 +889,7 @@
 
   </body>
 </html>
+
 
 
 
